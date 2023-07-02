@@ -6,11 +6,11 @@ import UserMenu from "./UserMenu";
 
 const Navbar = () => {
   return (
-    <div className="absolute top-0 left-0 h-full bg-nav rounded-tr-[20px] rounded-br-[20px] flex flex-col justify-between">
+    <div className="absolute top-0 left-0 w-full md:w-auto md:h-full bg-nav md:rounded-tr-[20px] md:rounded-br-[20px] flex md:flex-col justify-between">
       <Logo />
-      <div className="flex flex-col items-center">
+      <div className="flex items-center md:flex-col">
         <ThemeToggler />
-        <hr className="border-[#494E6E] w-full" />
+        <div className="w-px md:w-full h-full md:h-px bg-[#494E6E]"></div>
         <UserMenu />
       </div>
     </div>

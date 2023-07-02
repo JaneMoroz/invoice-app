@@ -13,12 +13,16 @@ const UserMenu = () => {
   }, []);
 
   return (
-    <div className="relative w-full flex justify-center pt-4">
-      <button aria-label="user menu" className="p-4 mb-3" onClick={toggleOpen}>
+    <div className="relative flex justify-center w-full">
+      <button
+        aria-label="user menu"
+        className="p-4 mx-2 sm:mx-4 md:my-2"
+        onClick={toggleOpen}
+      >
         <Avatar />
       </button>
       {isOpen && (
-        <div className="absolute rounded-[20px] bg-nav overflow-hidden left-full top-0 w-[200px] ml-3">
+        <div className="absolute rounded-[8px] overflow-hidden top-full right-0 mr-2 mt-2 md:left-full md:top-1/2 w-[200px] md:ml-2 md:mr-0 md:mt-0 md:-translate-y-1/2 shadow-lg">
           <div className="flex flex-col cursor-pointer">
             <>
               <MenuItem onClick={() => {}} label="Login" />

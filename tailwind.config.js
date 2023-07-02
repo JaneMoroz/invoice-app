@@ -14,6 +14,7 @@ module.exports = {
         primary: "var(--primary)",
         secondary: "var(--secondary)",
         themeToggler: "var(--themeToggler)",
+        popupBg: "var(--popupBg)",
       },
     },
   },

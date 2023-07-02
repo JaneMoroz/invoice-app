@@ -6,12 +6,12 @@ import logo from "../../../public/images/logo.svg";
 const Logo = () => {
   return (
     <div
-      className="relative p-8 bg-[rgb(124,93,250)] rounded-tr-[20px] rounded-br-[20px] 
-                 before:absolute before:top-1/2 before:left-0 before:bg-[rgb(146,119,255)] before:h-1/2 before:w-full before:rounded-tl-[20px]"
+      className="relative flex items-center justify-center p-5 sm:p-6 md:p-8 bg-[rgb(124,93,250)] rounded-tr-[20px] rounded-br-[20px] 
+                 before:absolute before:top-1/2 before:left-0 before:bg-[rgb(146,119,255)] before:h-1/2 before:w-full before:rounded-tl-[20px] overflow-hidden"
     >
-      <div className="h-9">
+      <div className="h-6.5 md:h-7">
         <Image
-          className="relative h-full w-full object-cover z-50"
+          className="relative z-50 object-cover w-full h-full"
           priority
           src={logo}
           alt="Invoice app logo"

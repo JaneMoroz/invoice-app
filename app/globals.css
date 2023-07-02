@@ -13,19 +13,23 @@ body,
     --background: #f8f8fb;
     --nav: #373b53;
 
-    --primary: #0C0E16;
-    --secondary: #888EB0
+    --primary: #0c0e16;
+    --secondary: #888eb0;
 
-    --themeToggler: #7E88C3
+    --themeToggler: #7e88c3;
+
+    --popupBg: #ffffff;
   }
 
   .dark {
     --background: #141625;
     --nav: #1e2139;
 
-    --primary: #FFFFFF
-    --secondary: #DFE3FA
+    --primary: #ffffff;
+    --secondary: #dfe3fa;
 
-    --themeToggler: #858BB2
+    --themeToggler: #858bb2;
+
+    --popupBg: #252945;
   }
 }

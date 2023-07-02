@@ -21,7 +21,7 @@ const ThemeToggler = () => {
   return (
     <button
       onClick={() => (theme == "dark" ? setTheme("light") : setTheme("dark"))}
-      className="p-4 mb-4"
+      className="p-4 mx-2 sm:mx-4 md:my-2"
     >
       {theme === "dark" ? <Sun /> : <Moon />}
     </button>
