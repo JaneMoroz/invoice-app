@@ -11,10 +11,22 @@ module.exports = {
       colors: {
         background: "var(--background)",
         nav: "var(--nav)",
+        modal: "var(--modal)",
+
         primary: "var(--primary)",
         secondary: "var(--secondary)",
+        blueishGrey: "var(--blueishGrey)",
+        lightBlueishGrey: "var(--lightBlueishGrey)",
+        darkGrey: "var(--darkGrey)",
+
         themeToggler: "var(--themeToggler)",
         popupBg: "var(--popupBg)",
+
+        // Button
+        defaultBg: "var(--defaultBg)",
+        defaultHoverBg: "var(--defaultHoverBg)",
+        grey: "var(--grey)",
+        greyHover: "var(--greyHover)",
       },
     },
   },

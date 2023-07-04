@@ -11,7 +11,7 @@ const Logo = () => {
     >
       <div className="h-6.5 md:h-7">
         <Image
-          className="relative z-50 object-cover w-full h-full"
+          className="relative z-40 object-cover w-full h-full"
           priority
           src={logo}
           alt="Invoice app logo"

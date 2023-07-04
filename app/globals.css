@@ -10,8 +10,13 @@ body,
 
 @layer base {
   :root {
+    --blueishGrey: #7e88c3;
+    --lightBlueishGrey: #dfe3fa;
+    --darkGrey: #888eb0;
+
     --background: #f8f8fb;
     --nav: #373b53;
+    --modal: #ffffff;
 
     --primary: #0c0e16;
     --secondary: #888eb0;
@@ -19,11 +24,19 @@ body,
     --themeToggler: #7e88c3;
 
     --popupBg: #ffffff;
+
+    /* Button */
+    --defaultBg: #f9fafe;
+    --defaultHoverBg: #dfe3fa;
+
+    --grey: #373b53;
+    --greyHover: #0c0e16;
   }
 
   .dark {
     --background: #141625;
     --nav: #1e2139;
+    --modal: #1e2139;
 
     --primary: #ffffff;
     --secondary: #dfe3fa;
@@ -31,5 +44,12 @@ body,
     --themeToggler: #858bb2;
 
     --popupBg: #252945;
+
+    /* Button */
+    --defaultBg: #252945;
+    --defaultHoverBg: #ffffff;
+
+    --grey: #373b53;
+    --greyHover: #1e2139;
   }
 }
