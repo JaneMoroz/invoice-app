@@ -1,17 +1,23 @@
 "use client";
 
-import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 import Modal from "./Modal";
 import Input from "../inputs/Input";
 import Button from "../Button";
 
+import { useRegisterModal, useAppDispatch } from "@/redux/hooks";
+import {
+  onClose,
+  registerUser,
+} from "@/redux/features/modals/register-modal-slice";
+
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 
 const RegisterModal = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useAppDispatch();
+  const [isOpen, isLoading] = useRegisterModal();
 
   const {
     register,
@@ -22,8 +28,7 @@ const RegisterModal = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    // Logic
-    console.log(data);
+    dispatch(registerUser(data));
   };
 
   const bodyContent = (
@@ -90,11 +95,11 @@ const RegisterModal = () => {
   return (
     <Modal
       disabled={isLoading}
-      isOpen={true}
+      isOpen={isOpen}
       title="Register"
       actionLabel="Continue"
       secondaryActionLabel="Back"
-      onClose={() => {}}
+      secondaryAction={() => dispatch(onClose())}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
       footer={footerContent}

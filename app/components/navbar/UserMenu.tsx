@@ -5,7 +5,11 @@ import { useCallback, useState } from "react";
 import Avatar from "./Avatar";
 import MenuItem from "./MenuItem";
 
+import { useAppDispatch } from "@/redux/hooks";
+import { onOpen as onRegisterModalOpen } from "@/redux/features/modals/register-modal-slice";
+
 const UserMenu = () => {
+  const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = useCallback(() => {
@@ -26,7 +30,10 @@ const UserMenu = () => {
           <div className="flex flex-col cursor-pointer">
             <>
               <MenuItem onClick={() => {}} label="Login" />
-              <MenuItem onClick={() => {}} label="Sign up" />
+              <MenuItem
+                onClick={() => dispatch(onRegisterModalOpen())}
+                label="Sign up"
+              />
             </>
           </div>
         </div>
