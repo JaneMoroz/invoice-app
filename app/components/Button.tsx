@@ -12,6 +12,7 @@ interface ButtonProps {
   purple?: boolean;
   red?: boolean;
   darkGrey?: boolean;
+  customGrey?: boolean;
   stretch?: boolean;
 }
 
@@ -25,6 +26,7 @@ const Button: React.FC<ButtonProps> = ({
   purple,
   red,
   darkGrey,
+  customGrey,
   stretch,
 }) => {
   return (
@@ -40,6 +42,7 @@ const Button: React.FC<ButtonProps> = ({
           "text-[#7E88C3] dark:text-[#DFE3FA] bg-defaultBg hover:bg-defaultHoverBg"
         }
         ${darkGrey && "text-secondary bg-grey hover:bg-greyHover"}
+        ${customGrey && "text-secondary bg-greyCustom hover:bg-greyCustomHover"}
         ${stretch && "w-full"}
       `}
     >

@@ -5,7 +5,7 @@ import Button from "../Button";
 
 interface ModalProps {
   isOpen?: boolean;
-  onClose?: () => void;
+  onClose: () => void;
   onSubmit: () => void;
   title?: string;
   body?: React.ReactElement;
@@ -36,13 +36,29 @@ const Modal: React.FC<ModalProps> = ({
     onSubmit();
   }, [disabled, onSubmit]);
 
+  const handleClose = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      if (disabled) {
+        return;
+      }
+
+      if ((e.target as Element).classList.contains("overlay")) {
+        onClose();
+      }
+    },
+    [disabled, onClose]
+  );
+
   if (!isOpen) {
     return null;
   }
 
   return (
     <>
-      <div className="fixed inset-0 z-50 flex items-center justify-center px-6 overflow-x-hidden overflow-y-auto outline-none focus:outline-none bg-neutral-800/70">
+      <div
+        onClick={(e) => handleClose(e)}
+        className="fixed inset-0 z-50 flex items-center justify-center px-6 overflow-x-hidden overflow-y-auto outline-none overlay focus:outline-none bg-neutral-800/70"
+      >
         <div className="w-full mx-auto my-6 sm:w-[480px] lg:h-auto md:h-auto">
           {/* CONTENT */}
           <div className="flex flex-col w-full h-full p-8 rounded-lg shadow-md outline-none sm:p-12 bg-modal lg:h-auto md:h-auto focus:outline-none">
@@ -55,11 +71,11 @@ const Modal: React.FC<ModalProps> = ({
             {/* FOOTER */}
             <div className="flex flex-col gap-2">
               <div className="flex flex-row items-center justify-end w-full gap-2">
-                {secondaryActionLabel && (
+                {secondaryAction && secondaryActionLabel && (
                   <Button
                     grey
                     label={secondaryActionLabel}
-                    onClick={() => {}}
+                    onClick={secondaryAction}
                   />
                 )}
                 <Button purple label={actionLabel} onClick={handleSubmit} />

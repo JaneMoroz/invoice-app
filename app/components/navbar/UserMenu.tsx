@@ -1,14 +1,22 @@
 "use client";
 
+import { SafeUser } from "@/app/types";
+
 import { useCallback, useState } from "react";
+import { signOut } from "next-auth/react";
 
 import Avatar from "./Avatar";
 import MenuItem from "./MenuItem";
 
 import { useAppDispatch } from "@/redux/hooks";
 import { onOpen as onRegisterModalOpen } from "@/redux/features/modals/register-modal-slice";
+import { onOpen as onLoginModalOpen } from "@/redux/features/modals/login-modal-slice";
 
-const UserMenu = () => {
+interface UserMenuProps {
+  currentUser?: SafeUser | null;
+}
+
+const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -23,18 +31,27 @@ const UserMenu = () => {
         className="p-4 mx-2 sm:mx-4 md:my-2"
         onClick={toggleOpen}
       >
-        <Avatar />
+        <Avatar src={currentUser?.image} />
       </button>
       {isOpen && (
         <div className="absolute rounded-[8px] overflow-hidden top-full right-0 mr-2 mt-2 md:left-full md:top-1/2 w-[200px] md:ml-2 md:mr-0 md:mt-0 md:-translate-y-1/2 shadow-lg">
           <div className="flex flex-col cursor-pointer">
-            <>
-              <MenuItem onClick={() => {}} label="Login" />
-              <MenuItem
-                onClick={() => dispatch(onRegisterModalOpen())}
-                label="Sign up"
-              />
-            </>
+            {currentUser ? (
+              <>
+                <MenuItem onClick={() => signOut()} label="Sign out" />
+              </>
+            ) : (
+              <>
+                <MenuItem
+                  onClick={() => dispatch(onLoginModalOpen())}
+                  label="Login"
+                />
+                <MenuItem
+                  onClick={() => dispatch(onRegisterModalOpen())}
+                  label="Sign up"
+                />
+              </>
+            )}
           </div>
         </div>
       )}
