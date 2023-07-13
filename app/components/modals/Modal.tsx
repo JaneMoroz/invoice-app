@@ -57,7 +57,7 @@ const Modal: React.FC<ModalProps> = ({
     <>
       <div
         onClick={(e) => handleClose(e)}
-        className="fixed inset-0 z-50 flex items-center justify-center px-6 overflow-x-hidden overflow-y-auto outline-none overlay focus:outline-none bg-neutral-800/70"
+        className="fixed inset-0 z-50 flex items-center justify-center px-6 overflow-x-hidden overflow-y-auto outline-none overlay focus:outline-none bg-black/50"
       >
         <div className="w-full mx-auto my-6 sm:w-[480px] lg:h-auto md:h-auto">
           {/* CONTENT */}
