@@ -5,6 +5,7 @@ import { Providers } from "@/redux/provider";
 import Navbar from "./components/navbar/Navbar";
 import LoginModal from "./components/modals/LoginModal";
 import RegisterModal from "./components/modals/RegisterModal";
+import InvoiceModal from "./components/invoice/InvoiceModal";
 
 import getCurrentUser from "./actions/getCurrentUser";
 
@@ -35,6 +36,7 @@ export default async function RootLayout({
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <RegisterModal />
             <LoginModal />
+            <InvoiceModal />
             <Navbar currentUser={currentUser} />
             {children}
           </ThemeProvider>

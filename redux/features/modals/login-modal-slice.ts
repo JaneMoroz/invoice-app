@@ -18,8 +18,6 @@ export const loginUser = createAsyncThunk(
   async (data: FieldValues, thunkAPI) => {
     const res = await signIn("credentials", { ...data, redirect: false });
     if (res && !res.ok) {
-      console.log(res);
-
       return thunkAPI.rejectWithValue(res.error);
     }
     return res;
