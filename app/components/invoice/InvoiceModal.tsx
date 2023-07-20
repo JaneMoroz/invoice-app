@@ -6,6 +6,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import Input from "../inputs/Input";
 import CountrySelect from "../inputs/CountrySelect";
 import Select from "../inputs/Select";
+import DatePickerInput from "../inputs/DatePicker";
 
 const InvoiceModal = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -65,7 +66,7 @@ const InvoiceModal = () => {
             errors={errors}
             required
           />
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-4 gap-2">
             <Input
               id="cityFrom"
               label="City"
@@ -82,11 +83,13 @@ const InvoiceModal = () => {
               errors={errors}
               required
             />
-            <CountrySelect
-              label="Country"
-              value={countryFrom}
-              onChange={(value) => setCustomValue("countryFrom", value)}
-            />
+            <div className="col-span-2">
+              <CountrySelect
+                label="Country"
+                value={countryFrom}
+                onChange={(value) => setCustomValue("countryFrom", value)}
+              />
+            </div>
           </div>
         </div>
         {/* Bill to */}
@@ -116,7 +119,7 @@ const InvoiceModal = () => {
             errors={errors}
             required
           />
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-4 gap-2">
             <Input
               id="cityTo"
               label="City"
@@ -133,23 +136,22 @@ const InvoiceModal = () => {
               errors={errors}
               required
             />
-            <CountrySelect
-              label="Country"
-              value={countryTo}
-              onChange={(value) => setCustomValue("countryTo", value)}
-            />
+            <div className="col-span-2">
+              <CountrySelect
+                label="Country"
+                value={countryTo}
+                onChange={(value) => setCustomValue("countryTo", value)}
+              />
+            </div>
           </div>
         </div>
         {/* Invoice details */}
         <div className="flex flex-col gap-6">
           <div className="grid grid-cols-2 gap-2">
-            <Input
-              id="invoiceDate"
+            <DatePickerInput
               label="Invoice Date"
-              disabled={isLoading}
-              register={register}
-              errors={errors}
-              required
+              value={invoiceDate}
+              onChange={(value) => setCustomValue("invoiceDate", value)}
             />
             <Select
               label="Payment Terms"

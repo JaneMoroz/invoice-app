@@ -14,7 +14,10 @@ import { League_Spartan } from "next/font/google";
 
 import ToasterProvider from "./providers/ToasterProvider";
 
-const spartan = League_Spartan({ subsets: ["latin"] });
+const spartan = League_Spartan({
+  subsets: ["latin"],
+  variable: "--spartan-font",
+});
 
 export const metadata = {
   title: "Invoice App",
@@ -29,19 +32,21 @@ export default async function RootLayout({
   const currentUser = await getCurrentUser();
 
   return (
-    <html className="bg-background" lang="en" suppressHydrationWarning>
-      <body className={spartan.className}>
-        <Providers>
-          <ToasterProvider />
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <RegisterModal />
-            <LoginModal />
-            <InvoiceModal />
-            <Navbar currentUser={currentUser} />
-            {children}
-          </ThemeProvider>
-        </Providers>
-      </body>
-    </html>
+    <>
+      <html className="bg-background" lang="en" suppressHydrationWarning>
+        <body className={spartan.variable}>
+          <Providers>
+            <ToasterProvider />
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              <RegisterModal />
+              <LoginModal />
+              <InvoiceModal />
+              <Navbar currentUser={currentUser} />
+              {children}
+            </ThemeProvider>
+          </Providers>
+        </body>
+      </html>
+    </>
   );
 }

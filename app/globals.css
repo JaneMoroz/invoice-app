@@ -117,3 +117,99 @@ body,
 .react-select__option:hover {
   color: #7c5dfa !important;
 }
+
+/* react-datepicker styles */
+
+.react-datepicker {
+  background: white;
+  border: none !important;
+  border-radius: 8px !important;
+  box-shadow: 0px 10px 20px rgba(72, 84, 159, 0.25) !important;
+}
+
+.dark .react-datepicker {
+  background: #252945;
+}
+
+.react-datepicker__input-container::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-image: url(/images/calendar.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  content: " ";
+  width: 35px;
+  height: 100%;
+}
+
+.react-datepicker__day-names {
+  display: none;
+}
+
+.react-datepicker__day,
+.react-datepicker__current-month {
+  font-size: 12px !important;
+  font-weight: bold !important;
+  color: #0c0e16 !important;
+  font-family: var(--spartan-font) !important;
+}
+
+.react-datepicker__header {
+  background: white;
+  border: none !important;
+}
+
+.dark .react-datepicker__header {
+  background: #252945;
+}
+
+.dark .react-datepicker__day,
+.dark .react-datepicker__current-month {
+  color: #dfe3fa !important;
+}
+
+.react-datepicker__current-month {
+  font-size: 13px !important;
+}
+
+.react-datepicker__navigation-icon {
+  top: 3px;
+}
+
+.react-datepicker__navigation-icon::before {
+  display: none;
+}
+
+.react-datepicker__navigation--previous::after,
+.react-datepicker__navigation--next::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url(/images/prev.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  content: " ";
+  width: 35px;
+  height: 100%;
+}
+
+.react-datepicker__navigation--previous::after {
+  background-image: url(/images/next.svg);
+}
+
+.react-datepicker__day.react-datepicker__day--selected,
+.react-datepicker__day:hover {
+  background: none !important;
+  color: #7c5dfa !important;
+}
+
+.react-datepicker-popper {
+  top: 100% !important;
+  transform: translate(0, 0) !important;
+  padding: 0 !important;
+}
+
+.react-datepicker__triangle {
+  display: none;
+}

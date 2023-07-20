@@ -20,10 +20,10 @@ const CountrySelect: React.FC<CountrySelectProps> = ({
   onChange,
 }) => {
   const options = [
-    { value: "next1", label: "Next 1 Day" },
-    { value: "next7", label: "Next 7 Day" },
-    { value: "next14", label: "Next 14 Day" },
-    { value: "next30", label: "Next 30 Day" },
+    { value: "net1", label: "Net 1 Day" },
+    { value: "net7", label: "Net 7 Days" },
+    { value: "net14", label: "Net 14 Days" },
+    { value: "net30", label: "Net 30 Days" },
   ];
   return (
     <div className="relative flex flex-col w-full gap-y-2.5">
