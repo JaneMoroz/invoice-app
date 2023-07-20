@@ -33,7 +33,7 @@ const CountrySelect: React.FC<CountrySelectProps> = ({
         {label}
       </label>
       <Select
-        placeholder="Select"
+        placeholder="Select country"
         isClearable
         options={getAll()}
         value={value}
