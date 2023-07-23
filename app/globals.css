@@ -78,6 +78,14 @@ body,
   color: #ffffff !important;
 }
 
+.react-select-error .react-select__control {
+  border-color: #ec5757 !important;
+}
+
+.dark .react-select-error .react-select__control {
+  border-color: #ec5757 !important;
+}
+
 .react-select__control:focus,
 .react-select__control:hover {
   border-color: #7c5dfa !important;

@@ -4,6 +4,7 @@ import React from "react";
 import Select from "react-select";
 
 import useCountries from "@/app/hooks/useCountries";
+import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 
 export type CountrySelectValue = {
   value: string;
@@ -12,15 +13,21 @@ export type CountrySelectValue = {
 };
 
 interface CountrySelectProps {
+  id: string;
   label: String;
   value?: CountrySelectValue;
+  register: UseFormRegister<FieldValues>;
   onChange: (value: CountrySelectValue) => void;
+  errors: FieldErrors;
 }
 
 const CountrySelect: React.FC<CountrySelectProps> = ({
+  id,
   label,
   value,
+  register,
   onChange,
+  errors,
 }) => {
   const { getAll } = useCountries();
   return (
@@ -33,6 +40,12 @@ const CountrySelect: React.FC<CountrySelectProps> = ({
         {label}
       </label>
       <Select
+        {...register(id, {
+          required: {
+            value: true,
+            message: "can't be empty",
+          },
+        })}
         placeholder="Select country"
         isClearable
         options={getAll()}
@@ -44,7 +57,7 @@ const CountrySelect: React.FC<CountrySelectProps> = ({
             <div>{option.label}</div>
           </div>
         )}
-        className="react-select-container"
+        className={`${errors[id] && "react-select-error"}`}
         classNamePrefix="react-select"
         theme={(theme) => ({
           ...theme,

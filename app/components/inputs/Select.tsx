@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import Select from "react-select";
 
 export type SelectValue = {
@@ -9,15 +10,21 @@ export type SelectValue = {
 };
 
 interface CountrySelectProps {
-  label: String;
+  id: string;
+  label: string;
   value?: SelectValue;
-  onChange: (value: String) => void;
+  register: UseFormRegister<FieldValues>;
+  onChange: (value: string) => void;
+  errors: FieldErrors;
 }
 
 const CountrySelect: React.FC<CountrySelectProps> = ({
+  id,
   label,
+  register,
   value,
   onChange,
+  errors,
 }) => {
   const options = [
     { value: "net1", label: "Net 1 Day" },
@@ -35,13 +42,19 @@ const CountrySelect: React.FC<CountrySelectProps> = ({
         {label}
       </label>
       <Select
+        {...register(id, {
+          required: {
+            value: true,
+            message: "can't be empty",
+          },
+        })}
         placeholder="Select"
         isClearable
         options={options}
         value={value}
-        onChange={(value) => onChange(value as String)}
+        onChange={(value) => onChange(value as string)}
         formatOptionLabel={(option: any) => <span>{option.label}</span>}
-        className="react-select-container"
+        className={`${errors[id] && "react-select-error"}`}
         classNamePrefix="react-select"
         theme={(theme) => ({
           ...theme,

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 import Input from "../inputs/Input";
@@ -16,6 +16,7 @@ const InvoiceModal = () => {
     register,
     handleSubmit,
     setValue,
+    setError,
     watch,
     formState: { errors },
   } = useForm<FieldValues>({
@@ -49,16 +50,22 @@ const InvoiceModal = () => {
     });
   };
 
+  const emailValidationPattern = {
+    value:
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    message: "not valid email",
+  };
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
   };
 
   return (
-    <div
-      onClick={() => {}}
-      className="fixed inset-0 flex items-center justify-center h-screen px-6 outline-none overlay focus:outline-none bg-black/50"
-    >
-      <form className="flex flex-col justify-between h-full overflow-y-hidden absolute left-0 top-0 w-full sm:w-[620px] md:w-[720px] p-6 pr-2 pb-0 pt-[98px] sm:p-14 sm:pr-8 sm:pb-0 sm:pt-[128px] md:pl-[160px] md:pt-14 z-50 bg-modal sm:rounded-tr-[20px] sm:rounded-br-[20px]">
+    <div className="fixed inset-0 flex items-center justify-center h-screen px-6 outline-none overlay focus:outline-none bg-black/50">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col justify-between h-full overflow-y-hidden absolute left-0 top-0 w-full sm:w-[620px] md:w-[720px] p-6 pr-2 pb-0 pt-[98px] sm:p-14 sm:pr-8 sm:pb-0 sm:pt-[128px] md:pl-[160px] md:pt-14 z-50 bg-modal sm:rounded-tr-[20px] sm:rounded-br-[20px]"
+      >
         <h2 className="pb-6 text-2xl font-semibold sm:pb-12 text-primary">
           New Invoice
         </h2>
@@ -93,9 +100,12 @@ const InvoiceModal = () => {
               />
               <div className="col-span-2">
                 <CountrySelect
+                  id="countryFrom"
                   label="Country"
                   value={countryFrom}
+                  register={register}
                   onChange={(value) => setCustomValue("countryFrom", value)}
+                  errors={errors}
                 />
               </div>
             </div>
@@ -114,6 +124,7 @@ const InvoiceModal = () => {
             <Input
               id="clientEmail"
               label="Client’s Email"
+              pattern={emailValidationPattern}
               disabled={isLoading}
               register={register}
               errors={errors}
@@ -146,9 +157,12 @@ const InvoiceModal = () => {
               />
               <div className="col-span-2">
                 <CountrySelect
+                  id="countryTo"
                   label="Country"
                   value={countryTo}
+                  register={register}
                   onChange={(value) => setCustomValue("countryTo", value)}
+                  errors={errors}
                 />
               </div>
             </div>
@@ -157,14 +171,20 @@ const InvoiceModal = () => {
           <div className="flex flex-col gap-6 mb-8">
             <div className="grid gap-2 sm:grid-cols-2">
               <DatePickerInput
+                id="invoiceDate"
                 label="Invoice Date"
                 value={invoiceDate}
+                register={register}
                 onChange={(value) => setCustomValue("invoiceDate", value)}
+                errors={errors}
               />
               <Select
+                id="paymentTerms"
                 label="Payment Terms"
                 value={paymentTerms}
+                register={register}
                 onChange={(value) => setCustomValue("paymentTerms", value)}
+                errors={errors}
               />
             </div>
             <Input
