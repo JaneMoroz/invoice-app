@@ -23,6 +23,8 @@ module.exports = {
         popupBg: "var(--popupBg)",
 
         // Button
+        baseBg: "var(--baseBg)",
+        baseBgHover: "var(--baseBgHover)",
         defaultBg: "var(--defaultBg)",
         defaultHoverBg: "var(--defaultHoverBg)",
         grey: "var(--grey)",

@@ -5,9 +5,11 @@ import { IconType } from "react-icons";
 interface ButtonProps {
   ariaLabel?: string;
   label: string;
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  type?: "button" | "submit" | "reset";
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
   icon?: IconType;
+  base?: boolean;
   grey?: boolean;
   purple?: boolean;
   red?: boolean;
@@ -19,9 +21,11 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({
   ariaLabel,
   label,
+  type,
   onClick,
   disabled,
   icon: Icon,
+  base,
   grey,
   purple,
   red,
@@ -34,7 +38,9 @@ const Button: React.FC<ButtonProps> = ({
       aria-label={ariaLabel}
       onClick={onClick}
       disabled={disabled}
-      className={`relative px-6 py-4 text-xs font-bold capitalize rounded-full transition
+      type={type ? type : "button"}
+      className={`relative p-4 sm:px-6 sm:py-4 text-xs font-bold capitalize rounded-full transition
+        ${base && "text-[#7E88C3] bg-baseBg hover:bg-baseBgHover"}
         ${red && "text-white bg-[#ec5757] hover:bg-[#FF9797]"}
         ${purple && "text-white bg-[#7C5DFA] hover:bg-[#9277FF]"}
         ${

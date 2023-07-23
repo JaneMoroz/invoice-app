@@ -26,6 +26,9 @@ body,
     --popupBg: #ffffff;
 
     /* Button */
+    --baseBg: #f9fafe;
+    --baseBgHover: #dfe3fa;
+
     --defaultBg: #f9fafe;
     --defaultHoverBg: #dfe3fa;
 
@@ -46,6 +49,9 @@ body,
     --popupBg: #252945;
 
     /* Button */
+    --baseBg: #dfe3fa;
+    --baseBgHover: #f9fafe;
+
     --defaultBg: #252945;
     --defaultHoverBg: #373b53;
 
