@@ -56,6 +56,7 @@ const Input: React.FC<InputProps> = ({
         })}
         placeholder=" "
         type={type}
+        step="0.01"
         className={`text-xs w-full py-4 px-5 font-bold bg-white dark:bg-[#1E2139] text-[#0C0E16] dark:text-white border border-[#DFE3FA] dark:border-[#252945] rounded outline-none transition disabled:cursor-not-allowed
             ${
               errors[id] &&
