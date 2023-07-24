@@ -4,7 +4,7 @@ import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 
 interface InputProps {
   id: string;
-  label: string;
+  label?: string;
   pattern?: { value: RegExp; message: string };
   type?: string;
   disabled?: boolean;
@@ -25,15 +25,17 @@ const Input: React.FC<InputProps> = ({
 }) => {
   return (
     <div className="relative flex flex-col w-full gap-y-2.5">
-      <label
-        htmlFor={id}
-        className={`
+      {label && (
+        <label
+          htmlFor={id}
+          className={`
             text-xs font-medium leading-4 text-[#7E88C3] dark:text-[#DFE3FA]
             ${errors[id] && "text-[#EC5757] dark:text-[#EC5757]"}
         `}
-      >
-        {label}
-      </label>
+        >
+          {label}
+        </label>
+      )}
       <input
         id={id}
         disabled={disabled}

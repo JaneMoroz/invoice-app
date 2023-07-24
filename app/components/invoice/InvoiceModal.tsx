@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 import Input from "../inputs/Input";
@@ -8,6 +8,7 @@ import CountrySelect from "../inputs/CountrySelect";
 import Select from "../inputs/Select";
 import DatePickerInput from "../inputs/DatePicker";
 import Button from "../Button";
+import ItemList from "./ItemList";
 
 const InvoiceModal = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,7 +17,6 @@ const InvoiceModal = () => {
     register,
     handleSubmit,
     setValue,
-    setError,
     watch,
     formState: { errors },
   } = useForm<FieldValues>({
@@ -34,6 +34,7 @@ const InvoiceModal = () => {
       invoiceDate: new Date(),
       paymentTerms: "",
       projectDesc: "",
+      items: [{ name: "", quntity: "0", price: "0" }],
     },
   });
 
@@ -41,6 +42,7 @@ const InvoiceModal = () => {
   const countryTo = watch("countryTo");
   const paymentTerms = watch("paymentTerms");
   const invoiceDate = watch("invoiceDate");
+  const items = watch("items");
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -64,7 +66,7 @@ const InvoiceModal = () => {
     <div className="fixed inset-0 flex items-center justify-center h-screen px-6 outline-none overlay focus:outline-none bg-black/50">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col justify-between h-full overflow-y-hidden absolute left-0 top-0 w-full sm:w-[620px] md:w-[720px] p-6 pr-2 pb-0 pt-[98px] sm:p-14 sm:pr-8 sm:pb-0 sm:pt-[128px] md:pl-[160px] md:pt-14 z-50 bg-modal sm:rounded-tr-[20px] sm:rounded-br-[20px]"
+        className="flex flex-col justify-between h-full overflow-y-hidden absolute left-0 top-0 w-full sm:w-[620px] md:w-[720px] p-6 pr-2 pb-0 pt-[98px] sm:p-14 sm:pr-8 sm:pb-0 sm:pt-[128px] md:pl-[140px] md:pt-14 z-50 bg-modal sm:rounded-tr-[20px] sm:rounded-br-[20px]"
       >
         <h2 className="pb-6 text-2xl font-semibold sm:pb-12 text-primary">
           New Invoice
@@ -168,7 +170,7 @@ const InvoiceModal = () => {
             </div>
           </div>
           {/* Invoice details */}
-          <div className="flex flex-col gap-6 mb-8">
+          <div className="flex flex-col gap-6">
             <div className="grid gap-2 sm:grid-cols-2">
               <DatePickerInput
                 id="invoiceDate"
@@ -196,6 +198,7 @@ const InvoiceModal = () => {
               required
             />
           </div>
+          <ItemList register={register} errors={errors} />
         </div>
         <div className="flex justify-between py-6 pl-0 pr-5">
           <Button base label="Discard" />
