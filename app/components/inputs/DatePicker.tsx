@@ -45,6 +45,11 @@ const DatePickerInput: React.FC<DatePickerInputProps> = ({
                     }`}
         dateFormat="dd MMM yyyy"
       />
+      {errors[id] && (
+        <span className="absolute top-0 right-0 text-[7px] font-medium text-[#EC5757] lowercase max-w-[40px]">
+          {errors[id]?.message as string}
+        </span>
+      )}
     </div>
   );
 };

@@ -18,6 +18,7 @@ const InvoiceModal = () => {
     handleSubmit,
     setValue,
     watch,
+    control,
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
@@ -34,7 +35,7 @@ const InvoiceModal = () => {
       invoiceDate: new Date(),
       paymentTerms: "",
       projectDesc: "",
-      items: [{ name: "", quntity: "0", price: "0" }],
+      items: [],
     },
   });
 
@@ -42,7 +43,6 @@ const InvoiceModal = () => {
   const countryTo = watch("countryTo");
   const paymentTerms = watch("paymentTerms");
   const invoiceDate = watch("invoiceDate");
-  const items = watch("items");
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -198,7 +198,12 @@ const InvoiceModal = () => {
               required
             />
           </div>
-          <ItemList register={register} errors={errors} />
+          <ItemList
+            register={register}
+            errors={errors}
+            watch={watch}
+            control={control}
+          />
         </div>
         <div className="flex justify-between py-6 pl-0 pr-5">
           <Button base label="Discard" />

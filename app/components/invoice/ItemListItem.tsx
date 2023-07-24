@@ -1,7 +1,15 @@
 "use client";
 
-import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
+import { useEffect, useState } from "react";
 
+import {
+  FieldErrors,
+  FieldValues,
+  UseFormRegister,
+  UseFormWatch,
+} from "react-hook-form";
+
+import { Delete } from "@/app/assets/icons/icons";
 import Input from "../inputs/Input";
 
 interface ItemListItemProps {
@@ -9,6 +17,9 @@ interface ItemListItemProps {
   required?: boolean;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
+  watch: UseFormWatch<FieldValues>;
+  remove: () => void;
+  index: number;
 }
 
 const ItemListItem: React.FC<ItemListItemProps> = ({
@@ -16,36 +27,59 @@ const ItemListItem: React.FC<ItemListItemProps> = ({
   required,
   register,
   errors,
+  watch,
+  remove,
+  index,
 }) => {
+  const quantity = watch(`${id}.qty`);
+  const price = watch(`${id}.price`);
+
+  const [total, setTotal] = useState("0");
+
+  useEffect(() => {
+    setTotal(`${(quantity * price).toFixed(2)}`);
+  }, [quantity, price]);
+
   return (
-    <div className="grid grid-cols-10 gap-4">
-      <div className="col-span-4">
+    <div className="grid items-center grid-cols-12 gap-4">
+      <div className="col-span-5">
         <Input
-          id={`${id}_name`}
+          id={`${id}.name`}
           required={required}
           register={register}
           errors={errors}
-        />
-      </div>
-      <div>
-        <Input
-          id={`${id}_qty`}
-          required={required}
-          register={register}
-          errors={errors}
+          hideErrorMsg
+          itemIndex={index}
         />
       </div>
       <div className="col-span-2">
-        {" "}
         <Input
-          id={`${id}_price`}
+          id={`${id}.qty`}
+          type="number"
           required={required}
           register={register}
           errors={errors}
+          hideErrorMsg
+          itemIndex={index}
         />
       </div>
-      <div className="col-span-2">Total</div>
-      <div>Icon</div>
+      <div className="col-span-2">
+        <Input
+          id={`${id}.price`}
+          type="number"
+          required={required}
+          register={register}
+          errors={errors}
+          hideErrorMsg
+          itemIndex={index}
+        />
+      </div>
+      <div className="col-span-2 text-[12px] font-bold">{total}</div>
+      <div>
+        <button onClick={remove} className="flex justify-center w-full">
+          <Delete />
+        </button>
+      </div>
     </div>
   );
 };

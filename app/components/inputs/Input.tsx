@@ -10,7 +10,9 @@ interface InputProps {
   disabled?: boolean;
   required?: boolean;
   register: UseFormRegister<FieldValues>;
-  errors: FieldErrors;
+  errors: any;
+  hideErrorMsg?: boolean;
+  itemIndex?: number;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -22,6 +24,8 @@ const Input: React.FC<InputProps> = ({
   required = false,
   register,
   errors,
+  hideErrorMsg = false,
+  itemIndex,
 }) => {
   return (
     <div className="relative flex flex-col w-full gap-y-2.5">
@@ -53,10 +57,21 @@ const Input: React.FC<InputProps> = ({
               errors[id] &&
               "border-[#EC5757] focus:border-[#EC5757] dark:border-[#EC5757] dark:focus:border-[#EC5757]"
             }
+            ${
+              itemIndex !== undefined &&
+              errors["items"] &&
+              errors["items"][itemIndex] &&
+              errors["items"][itemIndex][`${id.split(".")[1]}`] &&
+              "border-[#EC5757] focus:border-[#EC5757] dark:border-[#EC5757] dark:focus:border-[#EC5757]"
+            }
             ${(id === "postCodeFrom" || id === "postCodeTo") && "uppercase"}
+            ${
+              type === "number" &&
+              "[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            }
           `}
       />
-      {errors[id] && (
+      {errors[id] && !hideErrorMsg && (
         <span className="absolute top-0 right-0 text-[7px] font-medium text-[#EC5757] lowercase max-w-[40px]">
           {errors[id]?.message as string}
         </span>
