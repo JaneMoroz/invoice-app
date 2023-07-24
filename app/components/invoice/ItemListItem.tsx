@@ -42,41 +42,49 @@ const ItemListItem: React.FC<ItemListItemProps> = ({
 
   return (
     <div className="grid items-center grid-cols-12 gap-4">
-      <div className="col-span-5">
+      <div className="col-span-12 sm:col-span-5">
         <Input
+          label="Item Name"
           id={`${id}.name`}
           required={required}
           register={register}
           errors={errors}
-          hideErrorMsg
           itemIndex={index}
         />
       </div>
-      <div className="col-span-2">
+      <div className="col-span-4 sm:col-span-2">
         <Input
+          label="Qty."
           id={`${id}.qty`}
           type="number"
           required={required}
           register={register}
           errors={errors}
-          hideErrorMsg
           itemIndex={index}
         />
       </div>
-      <div className="col-span-2">
+      <div className="col-span-4 sm:col-span-2">
         <Input
+          label="Price"
           id={`${id}.price`}
           type="number"
           required={required}
           register={register}
           errors={errors}
-          hideErrorMsg
           itemIndex={index}
         />
       </div>
-      <div className="col-span-2 text-[12px] font-bold">{total}</div>
+      <div className="flex flex-col h-full sm:justify-center col-span-3 sm:col-span-2 text-[12px] font-bold">
+        <span className="block sm:hidden pb-5 text-xs font-medium leading-4 text-[#7E88C3] dark:text-[#DFE3FA]">
+          Total
+        </span>
+        {total}
+      </div>
       <div>
-        <button onClick={remove} className="flex justify-center w-full">
+        <button
+          onClick={remove}
+          className="flex justify-center w-full pt-5 sm:pt-0"
+        >
           <Delete />
         </button>
       </div>

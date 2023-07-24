@@ -4,14 +4,13 @@ import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 
 interface InputProps {
   id: string;
-  label?: string;
+  label: string;
   pattern?: { value: RegExp; message: string };
   type?: string;
   disabled?: boolean;
   required?: boolean;
   register: UseFormRegister<FieldValues>;
   errors: any;
-  hideErrorMsg?: boolean;
   itemIndex?: number;
 }
 
@@ -24,22 +23,27 @@ const Input: React.FC<InputProps> = ({
   required = false,
   register,
   errors,
-  hideErrorMsg = false,
   itemIndex,
 }) => {
   return (
     <div className="relative flex flex-col w-full gap-y-2.5">
-      {label && (
-        <label
-          htmlFor={id}
-          className={`
+      <label
+        htmlFor={id}
+        className={`
             text-xs font-medium leading-4 text-[#7E88C3] dark:text-[#DFE3FA]
             ${errors[id] && "text-[#EC5757] dark:text-[#EC5757]"}
+            ${
+              itemIndex !== undefined &&
+              errors["items"] &&
+              errors["items"][itemIndex] &&
+              errors["items"][itemIndex][`${id.split(".")[1]}`] &&
+              "text-[#EC5757] dark:text-[#EC5757]"
+            }
+            ${itemIndex !== undefined && "sm:hidden"}
         `}
-        >
-          {label}
-        </label>
-      )}
+      >
+        {label}
+      </label>
       <input
         id={id}
         disabled={disabled}
@@ -71,7 +75,7 @@ const Input: React.FC<InputProps> = ({
             }
           `}
       />
-      {errors[id] && !hideErrorMsg && (
+      {errors[id] && itemIndex === undefined && (
         <span className="absolute top-0 right-0 text-[7px] font-medium text-[#EC5757] lowercase max-w-[40px]">
           {errors[id]?.message as string}
         </span>

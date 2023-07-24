@@ -25,6 +25,7 @@ const DatePickerInput: React.FC<DatePickerInputProps> = ({
       <label
         className={`
             text-xs font-medium leading-4 text-[#7E88C3] dark:text-[#DFE3FA]
+            ${errors[id] && "text-[#EC5757] dark:text-[#EC5757]"}
         `}
       >
         {label}
