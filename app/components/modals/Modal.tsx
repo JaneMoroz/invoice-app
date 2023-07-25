@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
-import Button from "../Button";
+import Button from "../shared/Button";
 
 interface ModalProps {
   isOpen?: boolean;

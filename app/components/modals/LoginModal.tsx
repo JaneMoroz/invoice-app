@@ -9,7 +9,7 @@ import { unwrapResult } from "@reduxjs/toolkit";
 
 import Modal from "./Modal";
 import Input from "../inputs/Input";
-import Button from "../Button";
+import Button from "../shared/Button";
 
 import { useLoginModal, useAppDispatch } from "@/redux/hooks";
 import {

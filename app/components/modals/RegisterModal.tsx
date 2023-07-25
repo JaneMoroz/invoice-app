@@ -7,7 +7,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 import Modal from "./Modal";
 import Input from "../inputs/Input";
-import Button from "../Button";
+import Button from "../shared/Button";
 
 import { useRegisterModal, useAppDispatch } from "@/redux/hooks";
 import {
