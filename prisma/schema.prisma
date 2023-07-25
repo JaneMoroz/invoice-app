@@ -47,17 +47,17 @@ model Invoice {
   id     String @id @default(auto()) @map("_id") @db.ObjectId
   userId String @db.ObjectId
 
-  fromStreet   String
-  fromCity     String
-  fromPostCode String
-  fromCountry  String
+  streetFrom   String
+  cityFrom     String
+  postCodeFrom String
+  countryFrom  String
 
-  name        String
-  email       String
-  toStreet    String
-  toCity      String
-  toPostCode  String
-  toCountry   String
+  clientName  String
+  clientEmail String
+  streetTo    String
+  cityTo      String
+  postCodeTo  String
+  countryTo   String
   invoiceDate DateTime
   paymentTerm String
   description String
@@ -71,8 +71,8 @@ model Item {
   invoiceId String @db.ObjectId
 
   name     String
-  quantity Int
-  price    Int
+  quantity String
+  price    String
 
   invoice Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
 }

@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { unwrapResult } from "@reduxjs/toolkit";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 import Input from "../inputs/Input";
@@ -10,8 +11,13 @@ import DatePickerInput from "../inputs/DatePicker";
 import Button from "../Button";
 import ItemList from "./ItemList";
 
+import { useAppDispatch, useInvoice } from "@/redux/hooks";
+import { createInvoice } from "@/redux/features/invoice-slice";
+
 const InvoiceModal = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const [isOpen, isLoading] = useInvoice();
 
   const {
     register,
@@ -20,20 +26,21 @@ const InvoiceModal = () => {
     watch,
     control,
     formState: { errors },
+    reset,
   } = useForm<FieldValues>({
     defaultValues: {
       streetFrom: "",
       cityFrom: "",
       postCodeFrom: "",
-      countryFrom: "",
+      countryFrom: null,
       clientName: "",
       clientEmail: "",
       streetTo: "",
       cityTo: "",
       postCodeTo: "",
-      countryTo: "",
+      countryTo: null,
       invoiceDate: new Date(),
-      paymentTerms: "",
+      paymentTerm: "",
       projectDesc: "",
       items: [],
     },
@@ -41,7 +48,7 @@ const InvoiceModal = () => {
 
   const countryFrom = watch("countryFrom");
   const countryTo = watch("countryTo");
-  const paymentTerms = watch("paymentTerms");
+  const paymentTerm = watch("paymentTerm");
   const invoiceDate = watch("invoiceDate");
 
   const setCustomValue = (id: string, value: any) => {
@@ -60,6 +67,13 @@ const InvoiceModal = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
+
+    dispatch(createInvoice(data))
+      .then(unwrapResult)
+      .then(() => {
+        router.refresh();
+        reset();
+      });
   };
 
   return (
@@ -181,11 +195,11 @@ const InvoiceModal = () => {
                 errors={errors}
               />
               <Select
-                id="paymentTerms"
+                id="paymentTerm"
                 label="Payment Terms"
-                value={paymentTerms}
+                value={paymentTerm}
                 register={register}
-                onChange={(value) => setCustomValue("paymentTerms", value)}
+                onChange={(value) => setCustomValue("paymentTerm", value)}
                 errors={errors}
               />
             </div>

@@ -31,7 +31,7 @@ const ItemListItem: React.FC<ItemListItemProps> = ({
   remove,
   index,
 }) => {
-  const quantity = watch(`${id}.qty`);
+  const quantity = watch(`${id}.quantity`);
   const price = watch(`${id}.price`);
 
   const [total, setTotal] = useState("0");
@@ -55,7 +55,7 @@ const ItemListItem: React.FC<ItemListItemProps> = ({
       <div className="col-span-4 sm:col-span-2">
         <Input
           label="Qty."
-          id={`${id}.qty`}
+          id={`${id}.quantity`}
           type="number"
           required={required}
           register={register}

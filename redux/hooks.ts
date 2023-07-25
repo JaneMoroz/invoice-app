@@ -18,3 +18,9 @@ export const useLoginModal = () => {
   const isLoading = useAppSelector((state) => state.loginModal.isLoading);
   return useMemo(() => [isOpen, isLoading] as const, [isOpen, isLoading]);
 };
+
+export const useInvoice = () => {
+  const isOpen = useAppSelector((state) => state.invoice.isOpen);
+  const isLoading = useAppSelector((state) => state.invoice.isLoading);
+  return useMemo(() => [isOpen, isLoading] as const, [isOpen, isLoading]);
+};
