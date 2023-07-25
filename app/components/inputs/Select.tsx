@@ -43,6 +43,7 @@ const CountrySelect: React.FC<CountrySelectProps> = ({
         {label}
       </label>
       <Select
+        instanceId={id}
         {...register(id, {
           required: {
             value: true,
