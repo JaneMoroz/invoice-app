@@ -10,6 +10,8 @@ body,
 
 @layer base {
   :root {
+    --customShadow: 0px 10px 20px rgba(72, 84, 159, 0.25);
+
     --blueishGrey: #7e88c3;
     --lightBlueishGrey: #dfe3fa;
     --darkGrey: #888eb0;

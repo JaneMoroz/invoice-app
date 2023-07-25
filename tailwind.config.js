@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        customShadow: "var(--customShadow)",
+      },
       colors: {
         background: "var(--background)",
         nav: "var(--nav)",

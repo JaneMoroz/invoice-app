@@ -4,7 +4,7 @@ export const ArrowDown = () => {
       <path
         d="M1 1l4.228 4.228L9.456 1"
         stroke="#7C5DFA"
-        stroke-width="2"
+        strokeWidth="2"
         fill="none"
         fillRule="evenodd"
       />
@@ -18,7 +18,7 @@ export const ArrowLeft = () => {
       <path
         d="M6.342.886L2.114 5.114l4.228 4.228"
         stroke="#9277FF"
-        stroke-width="2"
+        strokeWidth="2"
         fill="none"
         fillRule="evenodd"
       />
@@ -32,7 +32,7 @@ export const ArrowRight = () => {
       <path
         d="M1 1l4 4-4 4"
         stroke="#7C5DFA"
-        stroke-width="2"
+        strokeWidth="2"
         fill="none"
         fillRule="evenodd"
       />
@@ -59,7 +59,7 @@ export const Check = () => {
       <path
         d="M1.5 4.5l2.124 2.124L8.97 1.28"
         stroke="#FFF"
-        stroke-width="2"
+        strokeWidth="2"
         fill="none"
         fillRule="evenodd"
       />
