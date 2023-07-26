@@ -36,7 +36,7 @@ export default async function RootLayout({
   return (
     <>
       <html className="bg-background" lang="en" suppressHydrationWarning>
-        <body className={spartan.variable}>
+        <body className={spartan.className}>
           <Providers>
             <ToasterProvider />
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>

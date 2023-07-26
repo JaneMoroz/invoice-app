@@ -22,6 +22,8 @@ export default async function getInvoices() {
     const safeInvoices = invoices.map((invoice) => ({
       ...invoice,
       invoiceDate: invoice.invoiceDate.toString(),
+      createdAt: invoice.createdAt.toString(),
+      updatedAt: invoice.updatedAt.toString(),
     }));
 
     return safeInvoices;
