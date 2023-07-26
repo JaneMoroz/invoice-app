@@ -12,7 +12,7 @@ import Button from "../shared/Button";
 import ItemList from "./ItemList";
 
 import { useAppDispatch, useInvoice } from "@/redux/hooks";
-import { createInvoice } from "@/redux/features/invoice-slice";
+import { createInvoice, onClose } from "@/redux/features/invoice-slice";
 
 const InvoiceModal = () => {
   const router = useRouter();
@@ -42,7 +42,7 @@ const InvoiceModal = () => {
       invoiceDate: new Date(),
       paymentTerm: "",
       projectDesc: "",
-      items: [],
+      items: [{ name: "", quantity: "", price: "" }],
     },
   });
 
@@ -79,8 +79,12 @@ const InvoiceModal = () => {
   return (
     <>
       {isOpen && (
-        <div className="fixed inset-0 flex items-center justify-center h-screen px-6 outline-none overlay focus:outline-none bg-black/50">
+        <div
+          onClick={() => dispatch(onClose())}
+          className="fixed inset-0 z-20 flex items-center justify-center h-screen px-6 outline-none overlay focus:outline-none bg-black/50"
+        >
           <form
+            onClick={(e) => e.stopPropagation()}
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col justify-between h-full overflow-y-hidden absolute left-0 top-0 w-full sm:w-[620px] md:w-[720px] p-6 pr-2 pb-0 pt-[98px] sm:p-14 sm:pr-8 sm:pb-0 sm:pt-[128px] md:pl-[140px] md:pt-14 z-50 bg-modal sm:rounded-tr-[20px] sm:rounded-br-[20px]"
           >

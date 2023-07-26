@@ -9,7 +9,7 @@ export type SelectValue = {
   label?: string;
 };
 
-interface CountrySelectProps {
+interface SelectProps {
   id: string;
   label: string;
   value?: SelectValue;
@@ -18,7 +18,7 @@ interface CountrySelectProps {
   errors: FieldErrors;
 }
 
-const CountrySelect: React.FC<CountrySelectProps> = ({
+const CountrySelect: React.FC<SelectProps> = ({
   id,
   label,
   register,
@@ -27,10 +27,10 @@ const CountrySelect: React.FC<CountrySelectProps> = ({
   errors,
 }) => {
   const options = [
-    { value: "net1", label: "Net 1 Day" },
-    { value: "net7", label: "Net 7 Days" },
-    { value: "net14", label: "Net 14 Days" },
-    { value: "net30", label: "Net 30 Days" },
+    { value: "NET1", label: "Net 1 Day" },
+    { value: "NET7", label: "Net 7 Days" },
+    { value: "NET14", label: "Net 14 Days" },
+    { value: "NET30", label: "Net 30 Days" },
   ];
   return (
     <div className="relative flex flex-col w-full gap-y-2.5">

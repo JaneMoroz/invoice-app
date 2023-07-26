@@ -36,19 +36,6 @@ const Modal: React.FC<ModalProps> = ({
     onSubmit();
   }, [disabled, onSubmit]);
 
-  const handleClose = useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
-      if (disabled) {
-        return;
-      }
-
-      if ((e.target as Element).classList.contains("overlay")) {
-        onClose();
-      }
-    },
-    [disabled, onClose]
-  );
-
   if (!isOpen) {
     return null;
   }
@@ -56,10 +43,13 @@ const Modal: React.FC<ModalProps> = ({
   return (
     <>
       <div
-        onClick={(e) => handleClose(e)}
+        onClick={() => onClose()}
         className="fixed inset-0 z-50 flex items-center justify-center px-6 overflow-x-hidden overflow-y-auto outline-none overlay focus:outline-none bg-black/50"
       >
-        <div className="w-full mx-auto my-6 sm:w-[480px] lg:h-auto md:h-auto">
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className="w-full mx-auto my-6 sm:w-[480px] lg:h-auto md:h-auto"
+        >
           {/* CONTENT */}
           <div className="flex flex-col w-full h-full p-8 rounded-lg shadow-md outline-none sm:p-12 bg-modal lg:h-auto md:h-auto focus:outline-none">
             {/* HEADER */}

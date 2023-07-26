@@ -6,7 +6,7 @@ const Filter = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="relative ">
+    <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-4 p-4 text-xs font-bold sm:px-6 sm:py-4 text-primary"
