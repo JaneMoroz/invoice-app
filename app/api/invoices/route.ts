@@ -45,6 +45,7 @@ export async function POST(request: Request) {
       ) => acc + +cur.total,
       0
     )
+    .toFixed(2)
     .toString();
 
   const invoice = await prisma.invoice.create({

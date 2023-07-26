@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
+import { usePathname } from "next/navigation";
 import { Plus } from "@/app/assets/icons/icons";
 import Filter from "./Filter";
 
@@ -15,7 +16,14 @@ interface HeaderControlsProps {
 }
 
 const HeaderControls: React.FC<HeaderControlsProps> = ({ currentUser }) => {
+  const pathname = usePathname();
   const dispatch = useAppDispatch();
+
+  const isMainPage = pathname === "/";
+
+  if (!isMainPage) {
+    return null;
+  }
 
   const createNewInvoice = useCallback(() => {
     if (!currentUser) {
