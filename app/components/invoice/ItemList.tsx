@@ -17,6 +17,7 @@ interface ItemListProps {
   errors: FieldErrors;
   watch: UseFormWatch<FieldValues>;
   control: Control<FieldValues, any>;
+  setCustomValue: (id: string, value: any) => void;
 }
 
 const ItemList: React.FC<ItemListProps> = ({
@@ -24,6 +25,7 @@ const ItemList: React.FC<ItemListProps> = ({
   errors,
   watch,
   control,
+  setCustomValue,
 }) => {
   const { fields, append, remove } = useFieldArray({
     name: "items",
@@ -50,6 +52,7 @@ const ItemList: React.FC<ItemListProps> = ({
             watch={watch}
             remove={() => remove(index)}
             index={index}
+            setCustomValue={setCustomValue}
           />
         ))}
         <Button

@@ -13,6 +13,7 @@ import ItemList from "./ItemList";
 
 import { useAppDispatch, useInvoice } from "@/redux/hooks";
 import { createInvoice, onClose } from "@/redux/features/invoice-slice";
+import toast from "react-hot-toast";
 
 const InvoiceModal = () => {
   const router = useRouter();
@@ -42,7 +43,7 @@ const InvoiceModal = () => {
       invoiceDate: new Date(),
       paymentTerm: "",
       projectDesc: "",
-      items: [{ name: "", quantity: "", price: "" }],
+      items: [{ name: "", quantity: "", price: "", total: "" }],
     },
   });
 
@@ -66,14 +67,16 @@ const InvoiceModal = () => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
-
-    dispatch(createInvoice(data))
-      .then(unwrapResult)
-      .then(() => {
-        router.refresh();
-        reset();
-      });
+    if (data.items.length === 0) {
+      toast.error("You need to add at least 1 item!");
+    } else {
+      dispatch(createInvoice(data))
+        .then(unwrapResult)
+        .then(() => {
+          router.refresh();
+          reset();
+        });
+    }
   };
 
   return (
@@ -223,6 +226,7 @@ const InvoiceModal = () => {
                 errors={errors}
                 watch={watch}
                 control={control}
+                setCustomValue={setCustomValue}
               />
             </div>
             <div className="flex justify-between py-6 pl-0 pr-5">

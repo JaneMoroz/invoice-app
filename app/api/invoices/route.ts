@@ -33,11 +33,19 @@ export async function POST(request: Request) {
 
   Object.keys(body).forEach((value: any) => {
     if (!body[value]) {
-      console.log(!body[value]);
-
       NextResponse.error();
     }
   });
+
+  const total = items
+    .reduce(
+      (
+        acc: number,
+        cur: { name: string; price: string; quantity: string; total: string }
+      ) => acc + +cur.total,
+      0
+    )
+    .toString();
 
   const invoice = await prisma.invoice.create({
     data: {
@@ -55,6 +63,7 @@ export async function POST(request: Request) {
       invoiceDate,
       paymentTerm: paymentTerm.value,
       description: projectDesc,
+      total: total,
       items: {
         create: [...items],
       },

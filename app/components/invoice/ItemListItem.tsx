@@ -18,6 +18,7 @@ interface ItemListItemProps {
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
   watch: UseFormWatch<FieldValues>;
+  setCustomValue: (id: string, value: any) => void;
   remove: () => void;
   index: number;
 }
@@ -28,6 +29,7 @@ const ItemListItem: React.FC<ItemListItemProps> = ({
   register,
   errors,
   watch,
+  setCustomValue,
   remove,
   index,
 }) => {
@@ -38,6 +40,7 @@ const ItemListItem: React.FC<ItemListItemProps> = ({
 
   useEffect(() => {
     setTotal(`${(quantity * price).toFixed(2)}`);
+    setCustomValue(`${id}.total`, total);
   }, [quantity, price]);
 
   return (
