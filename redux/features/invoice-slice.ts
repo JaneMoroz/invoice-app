@@ -16,9 +16,23 @@ const initialState: InvoiceSlice = {
 export const createInvoice = createAsyncThunk(
   "invoice/createInvoice",
   async (data: FieldValues) => {
-    console.log(data);
-
     const res = await axios.post("/api/invoices", data);
+    return res.data;
+  }
+);
+
+export const deleteInvoice = createAsyncThunk(
+  "invoice/deleteInvoice",
+  async (data: String) => {
+    const res = await axios.delete(`/api/invoices/${data}`);
+    return res.data;
+  }
+);
+
+export const updateStatus = createAsyncThunk(
+  "invoice/updateStatus",
+  async (data: String) => {
+    const res = await axios.post(`/api/invoices/${data}`);
     return res.data;
   }
 );
@@ -41,11 +55,39 @@ const invoiceSlice = createSlice({
 
     builder.addCase(createInvoice.fulfilled, (state, action) => {
       state.isLoading = false;
-      toast.success("Invoice created!");
+      toast.success("Invoice is created!");
       state.isOpen = false;
     });
 
     builder.addCase(createInvoice.rejected, (state, action) => {
+      state.isLoading = false;
+      toast.error("Something went wrong");
+    });
+
+    builder.addCase(deleteInvoice.pending, (state) => {
+      state.isLoading = true;
+    });
+
+    builder.addCase(deleteInvoice.fulfilled, (state, action) => {
+      state.isLoading = false;
+      toast.success("Invoice is deleted!");
+    });
+
+    builder.addCase(deleteInvoice.rejected, (state, action) => {
+      state.isLoading = false;
+      toast.error("Something went wrong");
+    });
+
+    builder.addCase(updateStatus.pending, (state) => {
+      state.isLoading = true;
+    });
+
+    builder.addCase(updateStatus.fulfilled, (state, action) => {
+      state.isLoading = false;
+      toast.success("Status is updated!");
+    });
+
+    builder.addCase(updateStatus.rejected, (state, action) => {
       state.isLoading = false;
       toast.error("Something went wrong");
     });

@@ -21,10 +21,6 @@ const HeaderControls: React.FC<HeaderControlsProps> = ({ currentUser }) => {
 
   const isMainPage = pathname === "/";
 
-  if (!isMainPage) {
-    return null;
-  }
-
   const createNewInvoice = useCallback(() => {
     if (!currentUser) {
       return dispatch(onLoginModalOpen());
@@ -32,6 +28,10 @@ const HeaderControls: React.FC<HeaderControlsProps> = ({ currentUser }) => {
 
     dispatch(onInvoiceOpen());
   }, [currentUser, dispatch]);
+
+  if (!isMainPage) {
+    return null;
+  }
 
   return (
     <div className="z-10 flex justify-between">

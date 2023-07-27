@@ -93,6 +93,11 @@ const InvoiceModal = () => {
     }
   };
 
+  const handleDiscard = () => {
+    reset();
+    dispatch(onClose());
+  };
+
   return (
     <>
       {isOpen && (
@@ -243,7 +248,12 @@ const InvoiceModal = () => {
               />
             </div>
             <div className="flex justify-between py-6 pl-0 pr-5">
-              <Button disabled={isLoading} base label="Discard" />
+              <Button
+                disabled={isLoading}
+                onClick={handleDiscard}
+                base
+                label="Discard"
+              />
               <div className="flex gap-2">
                 <Button
                   disabled={isLoading}

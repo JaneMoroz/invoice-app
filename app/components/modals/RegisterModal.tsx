@@ -38,7 +38,7 @@ const RegisterModal = () => {
   const onToggle = useCallback(() => {
     dispatch(onRegisterModalClose());
     dispatch(onLoginModalOpen());
-  }, [onLoginModalOpen, onRegisterModalClose]);
+  }, [dispatch]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
