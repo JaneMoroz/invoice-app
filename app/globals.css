@@ -113,6 +113,14 @@ body,
   margin: 0 !important;
 }
 
+.react-select__input {
+  color: #0c0e16 !important;
+}
+
+.dark .react-select__input {
+  color: #ffffff !important;
+}
+
 .react-select__indicator-separator {
   background-color: #dfe3fa !important;
   margin: 0 !important;
