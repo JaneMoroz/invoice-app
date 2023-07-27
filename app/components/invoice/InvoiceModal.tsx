@@ -14,6 +14,7 @@ import ItemList from "./ItemList";
 import { useAppDispatch, useInvoice } from "@/redux/hooks";
 import { createInvoice, onClose } from "@/redux/features/invoice-slice";
 import toast from "react-hot-toast";
+import { Status } from "@prisma/client";
 
 const InvoiceModal = () => {
   const router = useRouter();
@@ -70,7 +71,20 @@ const InvoiceModal = () => {
     if (data.items.length === 0) {
       toast.error("You need to add at least 1 item!");
     } else {
-      dispatch(createInvoice(data))
+      dispatch(createInvoice({ ...data }))
+        .then(unwrapResult)
+        .then(() => {
+          router.refresh();
+          reset();
+        });
+    }
+  };
+
+  const onDraftSubmit: SubmitHandler<FieldValues> = (data) => {
+    if (data.items.length === 0) {
+      toast.error("You need to add at least 1 item!");
+    } else {
+      dispatch(createInvoice({ ...data, status: Status.DRAFT }))
         .then(unwrapResult)
         .then(() => {
           router.refresh();
@@ -88,7 +102,6 @@ const InvoiceModal = () => {
         >
           <form
             onClick={(e) => e.stopPropagation()}
-            onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col justify-between h-full overflow-y-hidden absolute left-0 top-0 w-full sm:w-[620px] md:w-[720px] p-6 pr-2 pb-0 pt-[98px] sm:p-14 sm:pr-8 sm:pb-0 sm:pt-[128px] md:pl-[140px] md:pt-14 z-50 bg-modal sm:rounded-tr-[20px] sm:rounded-br-[20px]"
           >
             <h2 className="pb-6 text-2xl font-semibold sm:pb-12 text-primary">
@@ -230,10 +243,20 @@ const InvoiceModal = () => {
               />
             </div>
             <div className="flex justify-between py-6 pl-0 pr-5">
-              <Button base label="Discard" />
+              <Button disabled={isLoading} base label="Discard" />
               <div className="flex gap-2">
-                <Button darkGrey label="Save as Draft" />
-                <Button purple label="Save & Send" type="submit" />
+                <Button
+                  disabled={isLoading}
+                  darkGrey
+                  label="Save as Draft"
+                  onClick={handleSubmit(onDraftSubmit)}
+                />
+                <Button
+                  disabled={isLoading}
+                  purple
+                  label="Save & Send"
+                  onClick={handleSubmit(onSubmit)}
+                />
               </div>
             </div>
           </form>

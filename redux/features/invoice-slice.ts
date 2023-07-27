@@ -16,6 +16,8 @@ const initialState: InvoiceSlice = {
 export const createInvoice = createAsyncThunk(
   "invoice/createInvoice",
   async (data: FieldValues) => {
+    console.log(data);
+
     const res = await axios.post("/api/invoices", data);
     return res.data;
   }
@@ -40,6 +42,7 @@ const invoiceSlice = createSlice({
     builder.addCase(createInvoice.fulfilled, (state, action) => {
       state.isLoading = false;
       toast.success("Invoice created!");
+      state.isOpen = false;
     });
 
     builder.addCase(createInvoice.rejected, (state, action) => {

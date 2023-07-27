@@ -29,6 +29,7 @@ export async function POST(request: Request) {
     projectDesc,
     streetFrom,
     streetTo,
+    status,
   } = body;
 
   Object.keys(body).forEach((value: any) => {
@@ -65,6 +66,7 @@ export async function POST(request: Request) {
       paymentTerm: paymentTerm.value,
       description: projectDesc,
       total: total,
+      status: status,
       items: {
         create: [...items],
       },
