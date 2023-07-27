@@ -39,8 +39,9 @@ const ItemListItem: React.FC<ItemListItemProps> = ({
   const [total, setTotal] = useState("0");
 
   useEffect(() => {
-    setTotal(`${(quantity * price).toFixed(2)}`);
-    setCustomValue(`${id}.total`, total);
+    const value = (quantity * price).toFixed(2);
+    setTotal(`${value}`);
+    setCustomValue(`${id}.total`, value);
   }, [quantity, price]);
 
   return (
