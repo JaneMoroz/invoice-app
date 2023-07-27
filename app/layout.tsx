@@ -5,7 +5,7 @@ import { Providers } from "@/redux/provider";
 import Navbar from "./components/navbar/Navbar";
 import LoginModal from "./components/modals/LoginModal";
 import RegisterModal from "./components/modals/RegisterModal";
-import InvoiceModal from "./components/invoice/InvoiceModal";
+import InvoiceModal from "./components/modals/InvoiceModal/InvoiceModal";
 import Container from "./components/shared/Container";
 import HeaderControls from "./components/shared/HeaderControls";
 

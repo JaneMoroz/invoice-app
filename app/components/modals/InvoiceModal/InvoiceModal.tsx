@@ -1,25 +1,39 @@
 "use client";
 
+import { useEffect } from "react";
+import toast from "react-hot-toast";
+import { Item, PaymentTerm, Status } from "@prisma/client";
+
 import { useRouter } from "next/navigation";
 import { unwrapResult } from "@reduxjs/toolkit";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import {
+  FieldValues,
+  SubmitHandler,
+  useFieldArray,
+  useForm,
+} from "react-hook-form";
 
-import Input from "../inputs/Input";
-import CountrySelect from "../inputs/CountrySelect";
-import Select from "../inputs/Select";
-import DatePickerInput from "../inputs/DatePicker";
-import Button from "../shared/Button";
+import Input from "../../inputs/Input";
+import CountrySelect from "../../inputs/CountrySelect";
+import Select from "../../inputs/Select";
+import DatePickerInput from "../../inputs/DatePicker";
+import Button from "../../shared/Button";
 import ItemList from "./ItemList";
+import ItemListItem from "./ItemListItem";
 
 import { useAppDispatch, useInvoice } from "@/redux/hooks";
 import { createInvoice, onClose } from "@/redux/features/invoice-slice";
-import toast from "react-hot-toast";
-import { Status } from "@prisma/client";
+
+import useCountries from "@/app/hooks/useCountries";
+import { TERM_VALUES } from "@/app/enums";
+import emailValidationPattern from "@/app/helpers/emailValidationPattern";
 
 const InvoiceModal = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const [isOpen, isLoading] = useInvoice();
+
+  const [isOpen, isLoading, isEditing, invoiceToEdit] = useInvoice();
+  const { getByValue } = useCountries();
 
   const {
     register,
@@ -31,21 +45,16 @@ const InvoiceModal = () => {
     reset,
   } = useForm<FieldValues>({
     defaultValues: {
-      streetFrom: "",
-      cityFrom: "",
-      postCodeFrom: "",
       countryFrom: null,
-      clientName: "",
-      clientEmail: "",
-      streetTo: "",
-      cityTo: "",
-      postCodeTo: "",
       countryTo: null,
       invoiceDate: new Date(),
-      paymentTerm: "",
-      projectDesc: "",
-      items: [{ name: "", quantity: "", price: "", total: "" }],
+      items: [],
     },
+  });
+
+  const { fields, append, remove, replace } = useFieldArray({
+    name: "items",
+    control,
   });
 
   const countryFrom = watch("countryFrom");
@@ -61,11 +70,41 @@ const InvoiceModal = () => {
     });
   };
 
-  const emailValidationPattern = {
-    value:
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-    message: "not valid email",
-  };
+  // Fill fields when in Editing Mode, Reset fields otherwise
+  useEffect(() => {
+    if (isEditing && invoiceToEdit) {
+      const items = invoiceToEdit.items.map((item: Item) => {
+        return {
+          name: item.name,
+          quantity: item.quantity,
+          price: item.price,
+          total: item.total,
+        };
+      });
+      const paymentTerm = invoiceToEdit["paymentTerm"] as PaymentTerm;
+
+      for (const key in invoiceToEdit) {
+        if (key === "invoiceDate") {
+          setCustomValue(key, new Date(invoiceToEdit[key]));
+        } else if (key === "countryFrom") {
+          setCustomValue(key, getByValue(invoiceToEdit["countryFrom"]));
+        } else if (key === "countryTo") {
+          setCustomValue(key, getByValue(invoiceToEdit["countryTo"]));
+        } else if (key === "paymentTerm") {
+          setCustomValue(key, {
+            value: invoiceToEdit["paymentTerm"],
+            label: TERM_VALUES[paymentTerm],
+          });
+        } else if (key === "items") {
+          replace([...items]);
+        } else {
+          setCustomValue(key, invoiceToEdit[key]);
+        }
+      }
+    } else {
+      reset();
+    }
+  }, [isEditing, invoiceToEdit]);
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (data.items.length === 0) {
@@ -231,7 +270,7 @@ const InvoiceModal = () => {
                   />
                 </div>
                 <Input
-                  id="projectDesc"
+                  id="description"
                   label="Project Description"
                   disabled={isLoading}
                   register={register}
@@ -239,13 +278,31 @@ const InvoiceModal = () => {
                   required
                 />
               </div>
-              <ItemList
-                register={register}
-                errors={errors}
-                watch={watch}
-                control={control}
-                setCustomValue={setCustomValue}
-              />
+              <ItemList>
+                <div className="flex flex-col gap-4">
+                  {fields.map((item, index) => (
+                    <ItemListItem
+                      key={index}
+                      id={`items[${index}]`}
+                      register={register}
+                      errors={errors}
+                      required
+                      watch={watch}
+                      remove={() => remove(index)}
+                      index={index}
+                      setCustomValue={setCustomValue}
+                    />
+                  ))}
+                  <Button
+                    label="+ Add New Item"
+                    stretch
+                    grey
+                    onClick={() => {
+                      append({});
+                    }}
+                  />
+                </div>
+              </ItemList>
             </div>
             <div className="flex justify-between py-6 pl-0 pr-5">
               <Button

@@ -10,7 +10,7 @@ import {
 } from "react-hook-form";
 
 import { Delete } from "@/app/assets/icons/icons";
-import Input from "../inputs/Input";
+import Input from "../../inputs/Input";
 
 interface ItemListItemProps {
   id: string;
