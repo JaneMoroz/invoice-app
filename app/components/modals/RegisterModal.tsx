@@ -74,6 +74,7 @@ const RegisterModal = () => {
     <div className="flex flex-col gap-4 mt-3">
       <div className="w-full h-px bg-[#DFE3FA] dark:bg-[#252945]"></div>
       <Button
+        disabled={isLoading}
         grey
         ariaLabel="google sign up"
         label="Continue with Google"
@@ -81,6 +82,7 @@ const RegisterModal = () => {
         onClick={() => signIn("google")}
       />
       <Button
+        disabled={isLoading}
         grey
         ariaLabel="github sign up"
         label="Continue with Github"
