@@ -1,10 +1,13 @@
 "use client";
 
+import { add, format } from "date-fns";
+
 import { SafeInvoice } from "@/app/types";
 import useCountries from "@/app/hooks/useCountries";
 import { TERMS } from "@/app/enums";
-import { add, format } from "date-fns";
 import { Item } from "@prisma/client";
+import getShortId from "@/app/helpers/getShortId";
+
 import InvoiceInfoItemList from "./InvoiceInfoItemList";
 
 interface InvoiceInfoProps {
@@ -27,7 +30,7 @@ const InvoiceInfo: React.FC<InvoiceInfoProps> = ({ invoice }) => {
         <div className="flex flex-col gap-2">
           <div className="text-base font-bold uppercase text-primary">
             <span className="text-[#7E88C3]">#</span>
-            {invoice.id.substring(0, 6)}
+            {getShortId(invoice.id)}
           </div>
           <span className="text-sm">{invoice.description}</span>
         </div>

@@ -7,6 +7,7 @@ import { SafeInvoice } from "@/app/types";
 import { TERMS } from "@/app/enums";
 import { ArrowRight } from "@/app/assets/icons/icons";
 import StatusBadge from "./StatusBadge";
+import getShortId from "@/app/helpers/getShortId";
 
 interface InvoiceCardProps {
   invoice: SafeInvoice;
@@ -31,7 +32,7 @@ const InvoiceCard: React.FC<InvoiceCardProps> = ({ invoice }) => {
     >
       <div className="mb-6 font-bold uppercase sm:mb-0">
         <span className="text-[#7E88C3]">#</span>
-        {invoice.id.substring(0, 6)}
+        {getShortId(invoice.id)}
       </div>
       <span className="text-[#7E88C3] dark:text-[#DFE3FA]">
         Due {format(dueDate, "dd MMM yyyy")}

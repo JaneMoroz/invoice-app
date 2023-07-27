@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+
 import StatusBadge from "./StatusBadge";
 import Button from "../shared/Button";
 
