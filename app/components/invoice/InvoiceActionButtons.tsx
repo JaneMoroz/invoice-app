@@ -3,33 +3,45 @@
 import Button from "../shared/Button";
 
 import { useAppDispatch, useInvoice } from "@/redux/hooks";
-import { deleteInvoice, updateStatus } from "@/redux/features/invoice-slice";
+import {
+  deleteInvoice,
+  onEdit,
+  onOpen,
+  updateStatus,
+} from "@/redux/features/invoice-slice";
 import { useRouter } from "next/navigation";
 import { unwrapResult } from "@reduxjs/toolkit";
+import { SafeInvoice } from "@/app/types";
 
 interface InvoiceActionButtonsProps {
-  invoiceId: string;
+  invoice: SafeInvoice;
   status: string;
 }
 
 const InvoiceActionButtons: React.FC<InvoiceActionButtonsProps> = ({
-  invoiceId,
+  invoice,
   status,
 }) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const [isLoading] = useInvoice();
 
+  const handleEdit = () => {
+    dispatch(onEdit(invoice));
+    dispatch(onOpen());
+  };
+
   const handleDelete = () => {
-    dispatch(deleteInvoice(invoiceId))
+    dispatch(deleteInvoice(invoice.id))
       .then(unwrapResult)
       .then(() => {
         router.push("/");
+        router.refresh();
       });
   };
 
   const handleStatusUpdate = () => {
-    dispatch(updateStatus(invoiceId))
+    dispatch(updateStatus(invoice.id))
       .then(unwrapResult)
       .then(() => {
         router.refresh();
@@ -38,7 +50,7 @@ const InvoiceActionButtons: React.FC<InvoiceActionButtonsProps> = ({
 
   return (
     <>
-      <Button grey label="Edit" />
+      <Button onClick={handleEdit} disabled={isLoading} grey label="Edit" />
       <Button onClick={handleDelete} disabled={isLoading} red label="Delete" />
       <Button
         onClick={handleStatusUpdate}

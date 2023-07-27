@@ -39,7 +39,7 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       disabled={disabled}
       type={type ? type : "button"}
-      className={`relative flex gap-4 items-center justify-center px-6 py-4 text-xs font-bold capitalize rounded-full transition
+      className={`relative flex gap-4 items-center justify-center px-6 py-4 text-xs font-bold capitalize rounded-full transition disabled:cursor-not-allowed disabled:bg-[#373b53] disabled:hover:bg-[#373b53]
         ${base && "text-[#7E88C3] bg-baseBg hover:bg-baseBgHover"}
         ${red && "text-white bg-[#ec5757] hover:bg-[#FF9797]"}
         ${purple && "text-white bg-[#7C5DFA] hover:bg-[#9277FF]"}
@@ -51,7 +51,6 @@ const Button: React.FC<ButtonProps> = ({
         ${customGrey && "text-secondary bg-greyCustom hover:bg-greyCustomHover"}
         ${stretch && "w-full"}
         ${Icon && "sm:pl-12"}
-        ${disabled && "cursor-not-allowed bg-[#373b53] hover:bg-[#373b53]"}
       `}
     >
       {Icon && <Icon size={32} className="absolute left-0 ml-2" />}

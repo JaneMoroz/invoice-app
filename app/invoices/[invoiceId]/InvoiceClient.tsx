@@ -28,10 +28,12 @@ const InvoiceClient: React.FC<InvoiceClientProps> = ({ invoice }) => {
         <ArrowLeft />
         <span>Go back</span>
       </Link>
-      <InvoiceHead status={status} invoiceId={invoice.id} />
+      <InvoiceHead status={status}>
+        <InvoiceActionButtons invoice={invoice} status={status} />
+      </InvoiceHead>
       <InvoiceInfo invoice={invoice} />
       <div className="flex justify-between flex-1 sm:hidden px-6 py-4 bg-[#FFFFFF] dark:bg-[#1E2139] items-center rounded-t-md">
-        <InvoiceActionButtons invoiceId={invoice.id} status={status} />
+        <InvoiceActionButtons invoice={invoice} status={status} />
       </div>
     </div>
   );
