@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     paymentTerm,
     postCodeFrom,
     postCodeTo,
-    projectDesc,
+    description,
     streetFrom,
     streetTo,
     status,
@@ -62,7 +62,7 @@ export async function POST(request: Request) {
       countryTo: countryTo.value,
       invoiceDate,
       paymentTerm: paymentTerm.value,
-      description: projectDesc,
+      description: description,
       total: total,
       status: status,
       items: {

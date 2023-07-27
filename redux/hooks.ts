@@ -22,5 +22,10 @@ export const useLoginModal = () => {
 export const useInvoice = () => {
   const isOpen = useAppSelector((state) => state.invoice.isOpen);
   const isLoading = useAppSelector((state) => state.invoice.isLoading);
-  return useMemo(() => [isOpen, isLoading] as const, [isOpen, isLoading]);
+  const isEditing = useAppSelector((state) => state.invoice.isEditing);
+  const invoiceToEdit = useAppSelector((state) => state.invoice.invoiceToEdit);
+  return useMemo(
+    () => [isOpen, isLoading, isEditing, invoiceToEdit] as const,
+    [isOpen, isLoading, isEditing, invoiceToEdit]
+  );
 };

@@ -1,3 +1,4 @@
+import { SafeInvoice } from "@/app/types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { FieldValues } from "react-hook-form";
@@ -6,11 +7,15 @@ import { toast } from "react-hot-toast";
 interface InvoiceSlice {
   isOpen: boolean;
   isLoading: boolean;
+  isEditing: boolean;
+  invoiceToEdit: any;
 }
 
 const initialState: InvoiceSlice = {
   isOpen: false,
   isLoading: false,
+  isEditing: false,
+  invoiceToEdit: null,
 };
 
 export const createInvoice = createAsyncThunk(
@@ -46,6 +51,12 @@ const invoiceSlice = createSlice({
     },
     onClose: (state) => {
       state.isOpen = false;
+      state.isEditing = false;
+      state.invoiceToEdit = null;
+    },
+    onEdit: (state, action) => {
+      state.isEditing = true;
+      state.invoiceToEdit = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -95,6 +106,6 @@ const invoiceSlice = createSlice({
 });
 
 export const invoiceReducer = invoiceSlice.reducer;
-export const { onOpen, onClose } = invoiceSlice.actions;
+export const { onOpen, onClose, onEdit } = invoiceSlice.actions;
 
 export default invoiceSlice;
