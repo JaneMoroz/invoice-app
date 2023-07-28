@@ -19,6 +19,18 @@ export const useLoginModal = () => {
   return useMemo(() => [isOpen, isLoading] as const, [isOpen, isLoading]);
 };
 
+export const useDeleteModal = () => {
+  const isOpen = useAppSelector((state) => state.deleteModal.isOpen);
+  const isLoading = useAppSelector((state) => state.deleteModal.isLoading);
+  const invoiceIdToDelete = useAppSelector(
+    (state) => state.deleteModal.invoiceIdToDelete
+  );
+  return useMemo(
+    () => [isOpen, isLoading, invoiceIdToDelete] as const,
+    [isOpen, isLoading, invoiceIdToDelete]
+  );
+};
+
 export const useInvoice = () => {
   const isOpen = useAppSelector((state) => state.invoice.isOpen);
   const isLoading = useAppSelector((state) => state.invoice.isLoading);

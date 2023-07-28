@@ -164,7 +164,7 @@ const InvoiceModal = () => {
         >
           <form
             onClick={(e) => e.stopPropagation()}
-            className="flex flex-col justify-between h-full overflow-y-hidden absolute left-0 top-0 w-full sm:w-[620px] md:w-[720px] p-6 pr-2 pb-0 pt-[98px] sm:p-14 sm:pr-8 sm:pb-0 sm:pt-[128px] md:pl-[140px] md:pt-14 z-50 bg-modal sm:rounded-tr-[20px] sm:rounded-br-[20px]"
+            className="flex flex-col justify-between h-full overflow-y-hidden absolute left-0 top-0 w-full sm:w-[620px] md:w-[720px] p-6 pr-2 pb-0 pt-[98px] sm:p-14 sm:pr-8 sm:pb-0 sm:pt-[128px] md:pl-[140px] md:pt-14 z-50 bg-[#FFFFFF] dark:bg-[#141625] sm:rounded-tr-[20px] sm:rounded-br-[20px]"
           >
             <h2 className="pb-6 text-2xl font-semibold sm:pb-12 text-primary">
               {isEditing
@@ -349,9 +349,9 @@ const InvoiceModal = () => {
                   purple
                   label={isLoading ? "Save changes" : "Save & Send"}
                   onClick={
-                    isLoading
-                      ? handleSubmit(onSubmit)
-                      : handleSubmit(onEditSubmit)
+                    isEditing
+                      ? handleSubmit(onEditSubmit)
+                      : handleSubmit(onSubmit)
                   }
                 />
               </div>

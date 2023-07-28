@@ -11,6 +11,7 @@ body,
 @layer base {
   :root {
     --customShadow: 0px 10px 20px rgba(72, 84, 159, 0.25);
+    --modalShadow: 0px 10px 10px rgba(72, 84, 159, 0.1);
 
     --blueishGrey: #7e88c3;
     --lightBlueishGrey: #dfe3fa;
@@ -41,7 +42,7 @@ body,
   .dark {
     --background: #141625;
     --nav: #1e2139;
-    --modal: #141625;
+    --modal: #1e2139;
 
     --primary: #ffffff;
     --secondary: #dfe3fa;

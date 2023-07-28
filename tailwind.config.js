@@ -10,6 +10,7 @@ module.exports = {
     extend: {
       boxShadow: {
         customShadow: "var(--customShadow)",
+        modalShadow: "var(--modalShadow)",
       },
       colors: {
         background: "var(--background)",

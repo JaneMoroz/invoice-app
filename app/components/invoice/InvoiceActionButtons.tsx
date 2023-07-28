@@ -3,14 +3,15 @@
 import Button from "../shared/Button";
 
 import { useAppDispatch, useInvoice } from "@/redux/hooks";
-import {
-  deleteInvoice,
-  onEdit,
-  updateStatus,
-} from "@/redux/features/invoice-slice";
+import { onEdit, updateStatus } from "@/redux/features/invoice-slice";
 import { useRouter } from "next/navigation";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { SafeInvoice } from "@/app/types";
+import {
+  onOpen,
+  setInvoiceId,
+} from "@/redux/features/modals/delete-modal-slice";
+import { useCallback } from "react";
 
 interface InvoiceActionButtonsProps {
   invoice: SafeInvoice;
@@ -29,27 +30,28 @@ const InvoiceActionButtons: React.FC<InvoiceActionButtonsProps> = ({
     dispatch(onEdit(invoice));
   };
 
-  const handleDelete = () => {
-    dispatch(deleteInvoice(invoice.id))
-      .then(unwrapResult)
-      .then(() => {
-        router.push("/");
-        router.refresh();
-      });
-  };
+  const handleDeleteModal = useCallback(() => {
+    dispatch(setInvoiceId(invoice.id));
+    dispatch(onOpen());
+  }, [dispatch, invoice.id]);
 
-  const handleStatusUpdate = () => {
+  const handleStatusUpdate = useCallback(() => {
     dispatch(updateStatus(invoice.id))
       .then(unwrapResult)
       .then(() => {
         router.refresh();
       });
-  };
+  }, [dispatch, invoice.id, router]);
 
   return (
     <>
       <Button onClick={handleEdit} disabled={isLoading} grey label="Edit" />
-      <Button onClick={handleDelete} disabled={isLoading} red label="Delete" />
+      <Button
+        onClick={handleDeleteModal}
+        disabled={isLoading}
+        red
+        label="Delete"
+      />
       <Button
         onClick={handleStatusUpdate}
         disabled={isLoading || status === "paid"}

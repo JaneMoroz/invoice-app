@@ -8,6 +8,7 @@ import RegisterModal from "./components/modals/RegisterModal";
 import InvoiceModal from "./components/modals/InvoiceModal/InvoiceModal";
 import Container from "./components/shared/Container";
 import HeaderControls from "./components/shared/HeaderControls";
+import DeleteModal from "./components/modals/DeleteModal";
 
 import getCurrentUser from "./actions/getCurrentUser";
 
@@ -43,6 +44,7 @@ export default async function RootLayout({
               <RegisterModal />
               <LoginModal />
               <InvoiceModal />
+              <DeleteModal />
               <Navbar currentUser={currentUser} />
               <Container>
                 <div className="flex flex-col w-full h-full gap-14">
