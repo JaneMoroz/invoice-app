@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Button from "../shared/Button";
 
 interface ModalProps {
@@ -30,6 +30,23 @@ const Modal: React.FC<ModalProps> = ({
   secondaryAction,
   secondaryActionLabel,
 }) => {
+  const [showModal, setShowModal] = useState(isOpen);
+
+  useEffect(() => {
+    setShowModal(isOpen);
+  }, [isOpen]);
+
+  const handleClose = useCallback(() => {
+    if (disabled) {
+      return;
+    }
+
+    setShowModal(false);
+    setTimeout(() => {
+      onClose();
+    }, 300);
+  }, [disabled, onClose]);
+
   const handleSubmit = useCallback(() => {
     if (disabled) {
       return;
@@ -45,7 +62,7 @@ const Modal: React.FC<ModalProps> = ({
   return (
     <>
       <div
-        onClick={() => onClose()}
+        onClick={handleClose}
         className="fixed inset-0 z-50 flex items-center justify-center px-6 overflow-x-hidden overflow-y-auto outline-none overlay focus:outline-none bg-black/50"
       >
         <div
@@ -53,7 +70,11 @@ const Modal: React.FC<ModalProps> = ({
           className="w-full mx-auto my-6 sm:w-[480px] lg:h-auto md:h-auto"
         >
           {/* CONTENT */}
-          <form className="flex flex-col w-full h-full p-8 rounded-lg outline-none sm:p-12 bg-modal shadow-modalShadow lg:h-auto md:h-auto focus:outline-none">
+          <form
+            className={`translate duration-300 flex flex-col w-full h-full p-8 rounded-lg outline-none sm:p-12 bg-modal shadow-modalShadow lg:h-auto md:h-auto focus:outline-none
+                        ${showModal ? "translate-y-0" : "translate-y-full"}
+                        ${showModal ? "opacity-100" : "opacity-0"}`}
+          >
             {/* HEADER */}
             <div className="text-xl font-bold sm:text-2xl text-primary">
               {title}
