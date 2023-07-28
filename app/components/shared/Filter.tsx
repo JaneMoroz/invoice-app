@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { ArrowDown } from "@/app/assets/icons/icons";
 import Check from "../inputs/Check";
+import { useSearchParams } from "next/navigation";
 
 const Filter = () => {
+  const params = useSearchParams();
+
   const [isOpen, setIsOpen] = useState(false);
+
+  const draft = params?.get("draft");
+  const pending = params?.get("pending");
+  const paid = params?.get("paid");
 
   return (
     <div className="relative">
@@ -20,9 +27,13 @@ const Filter = () => {
       </button>
       {isOpen && (
         <div className="w-[192px] absolute flex flex-col gap-4 p-6 mt-1 -translate-x-1/2 rounded left-1/2 bottom-100 mt- shadow-customShadow bg-popupBg">
-          <Check label="draft" id="draft" />
-          <Check label="pending" id="pending" />
-          <Check label="paid" id="paid" />
+          <Check label="draft" id="draft" checked={!draft ? true : false} />
+          <Check
+            label="pending"
+            id="pending"
+            checked={!pending ? true : false}
+          />
+          <Check label="paid" id="paid" checked={!paid ? true : false} />
         </div>
       )}
     </div>

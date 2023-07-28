@@ -1,12 +1,16 @@
 import getCurrentUser from "./actions/getCurrentUser";
-import getInvoices from "./actions/getInvoices";
+import getInvoices, { IInvoicesParams } from "./actions/getInvoices";
 
 import InvoiceCard from "./components/invoice/InvoiceCard";
 import EmptyState from "./components/shared/EmptyState";
 import HeaderControls from "./components/shared/HeaderControls";
 
-export default async function Home() {
-  const invoices = await getInvoices();
+interface HomeProps {
+  searchParams: IInvoicesParams;
+}
+
+const Home = async ({ searchParams }: HomeProps) => {
+  const invoices = await getInvoices(searchParams);
   const currentUser = await getCurrentUser();
 
   if (invoices.length === 0) {
@@ -34,4 +38,6 @@ export default async function Home() {
       </div>
     </>
   );
-}
+};
+
+export default Home;
