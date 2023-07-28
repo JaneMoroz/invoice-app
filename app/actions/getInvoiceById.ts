@@ -1,11 +1,19 @@
 import prisma from "@/app/libs/prismadb";
 
+import getCurrentUser from "./getCurrentUser";
+
 interface IParams {
   invoiceId?: string;
 }
 
 export default async function getInvoiceById(params: IParams) {
   try {
+    const currentUser = await getCurrentUser();
+
+    if (!currentUser) {
+      return null;
+    }
+
     const { invoiceId } = params;
     const invoice = await prisma.invoice.findUnique({
       where: {
@@ -17,6 +25,10 @@ export default async function getInvoiceById(params: IParams) {
     });
 
     if (!invoice) {
+      return null;
+    }
+
+    if (invoice.userId !== currentUser.id) {
       return null;
     }
 
