@@ -34,6 +34,7 @@
     "react-icons": "^4.10.1",
     "react-redux": "^8.1.1",
     "react-select": "^5.7.4",
+    "react-spinners": "^0.13.8",
     "tailwindcss": "3.3.2",
     "typescript": "5.1.6",
     "world-countries": "^4.0.0"

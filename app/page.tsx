@@ -20,7 +20,10 @@ const Home = async ({ searchParams }: HomeProps) => {
           currentUser={currentUser}
           numOfInvoices={invoices.length}
         />
-        <EmptyState />
+        <EmptyState
+          title="There is nothing here"
+          subtitle="Create a new invoice by clicking the New Invoice button and get started"
+        />
       </>
     );
   }

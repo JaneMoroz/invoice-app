@@ -11,7 +11,9 @@ const ListingPage = async ({ params }: { params: IParams }) => {
   const invoice = await getInvoiceById(params);
 
   if (!invoice) {
-    return <EmptyState />;
+    return (
+      <EmptyState title="404" subtitle="The page doesn't exist" showReset />
+    );
   }
 
   return <InvoiceClient invoice={invoice} />;
