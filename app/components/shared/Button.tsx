@@ -39,7 +39,7 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       disabled={disabled}
       type={type ? type : "button"}
-      className={`relative flex gap-4 items-center justify-center px-5 sm:px-6 py-4 text-xs font-bold capitalize rounded-full transition disabled:cursor-not-allowed disabled:bg-[#373b53] disabled:hover:bg-[#373b53]
+      className={`relative flex gap-4 items-center justify-center px-5 sm:px-6 py-4 text-xs font-bold capitalize rounded-full transition disabled:cursor-not-allowed disabled:bg-opacity-50 disabled:hover:bg-opacity-50
         ${base && "text-[#7E88C3] bg-baseBg hover:bg-baseBgHover"}
         ${red && "text-white bg-[#ec5757] hover:bg-[#FF9797]"}
         ${purple && "text-white bg-[#7C5DFA] hover:bg-[#9277FF]"}

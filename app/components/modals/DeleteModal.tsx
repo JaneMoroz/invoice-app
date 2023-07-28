@@ -10,6 +10,7 @@ import Modal from "./Modal";
 import { useAppDispatch, useDeleteModal } from "@/redux/hooks";
 import { onClose } from "@/redux/features/modals/delete-modal-slice";
 import { deleteInvoice } from "@/redux/features/invoice-slice";
+import getShortId from "@/app/helpers/getShortId";
 
 const DeleteModal = () => {
   const router = useRouter();
@@ -28,8 +29,13 @@ const DeleteModal = () => {
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      Are you sure you want to delete invoice #XM9141? This action cannot be
-      undone.
+      <p>
+        Are you sure you want to delete invoice #
+        <span className="inline uppercase">
+          {getShortId(invoiceIdToDelete)}
+        </span>
+        ? This action cannot be undone.
+      </p>
     </div>
   );
 

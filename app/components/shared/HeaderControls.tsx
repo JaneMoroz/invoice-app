@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback } from "react";
-import { usePathname } from "next/navigation";
 import { Plus } from "@/app/assets/icons/icons";
 import Filter from "./Filter";
 
@@ -13,13 +12,14 @@ import { onOpen as onLoginModalOpen } from "@/redux/features/modals/login-modal-
 
 interface HeaderControlsProps {
   currentUser?: SafeUser | null;
+  numOfInvoices: number;
 }
 
-const HeaderControls: React.FC<HeaderControlsProps> = ({ currentUser }) => {
-  const pathname = usePathname();
+const HeaderControls: React.FC<HeaderControlsProps> = ({
+  currentUser,
+  numOfInvoices,
+}) => {
   const dispatch = useAppDispatch();
-
-  const isMainPage = pathname === "/";
 
   const createNewInvoice = useCallback(() => {
     if (!currentUser) {
@@ -29,17 +29,17 @@ const HeaderControls: React.FC<HeaderControlsProps> = ({ currentUser }) => {
     dispatch(onInvoiceOpen());
   }, [currentUser, dispatch]);
 
-  if (!isMainPage) {
-    return null;
-  }
-
   return (
     <div className="z-10 flex justify-between">
       <div className="flex flex-col gap-1 sm:gap-2">
         <h1 className="text-[20px] sm:text-[32px] font-bold text-primary">
           Invoices
         </h1>
-        <p className="text-xs font-medium text-secondary">No invoices</p>
+        <p className="text-xs font-medium text-secondary">
+          {numOfInvoices === 0
+            ? "No invoices"
+            : `There are ${numOfInvoices} total invoices`}
+        </p>
       </div>
       <div className="flex items-center gap-6 sm:gap-10">
         <Filter />
