@@ -4,6 +4,7 @@ import { useCallback } from "react";
 
 import { signIn } from "next-auth/react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { unwrapResult } from "@reduxjs/toolkit";
 
 import Modal from "./Modal";
 import Input from "../inputs/Input";
@@ -32,7 +33,12 @@ const RegisterModal = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    dispatch(registerUser(data));
+    dispatch(registerUser(data))
+      .then(unwrapResult)
+      .then(() => {
+        dispatch(onRegisterModalClose());
+        dispatch(onLoginModalOpen());
+      });
   };
 
   const onToggle = useCallback(() => {
