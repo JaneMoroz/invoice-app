@@ -1,9 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import toast from "react-hot-toast";
-import { Item, PaymentTerm, Status } from "@prisma/client";
-
 import { useRouter } from "next/navigation";
 import { unwrapResult } from "@reduxjs/toolkit";
 import {
@@ -12,6 +9,8 @@ import {
   useFieldArray,
   useForm,
 } from "react-hook-form";
+import { Item, PaymentTerm, Status } from "@prisma/client";
+import toast from "react-hot-toast";
 
 import Input from "../../inputs/Input";
 import CountrySelect from "../../inputs/CountrySelect";
@@ -22,11 +21,17 @@ import ItemList from "./ItemList";
 import ItemListItem from "./ItemListItem";
 
 import { useAppDispatch, useInvoice } from "@/redux/hooks";
-import { createInvoice, onClose } from "@/redux/features/invoice-slice";
+import {
+  createInvoice,
+  onClose,
+  updateInvoice,
+} from "@/redux/features/invoice-slice";
 
 import useCountries from "@/app/hooks/useCountries";
-import { TERM_VALUES } from "@/app/enums";
 import emailValidationPattern from "@/app/helpers/emailValidationPattern";
+import getShortId from "@/app/helpers/getShortId";
+
+import { TERM_VALUES } from "@/app/enums";
 
 const InvoiceModal = () => {
   const router = useRouter();
@@ -110,7 +115,7 @@ const InvoiceModal = () => {
     if (data.items.length === 0) {
       toast.error("You need to add at least 1 item!");
     } else {
-      dispatch(createInvoice({ ...data }))
+      dispatch(createInvoice(data))
         .then(unwrapResult)
         .then(() => {
           router.refresh();
@@ -124,6 +129,19 @@ const InvoiceModal = () => {
       toast.error("You need to add at least 1 item!");
     } else {
       dispatch(createInvoice({ ...data, status: Status.DRAFT }))
+        .then(unwrapResult)
+        .then(() => {
+          router.refresh();
+          reset();
+        });
+    }
+  };
+
+  const onEditSubmit: SubmitHandler<FieldValues> = (data) => {
+    if (data.items.length === 0) {
+      toast.error("You need to add at least 1 item!");
+    } else {
+      dispatch(updateInvoice({ ...data, invoiceId: invoiceToEdit.id }))
         .then(unwrapResult)
         .then(() => {
           router.refresh();
@@ -149,7 +167,9 @@ const InvoiceModal = () => {
             className="flex flex-col justify-between h-full overflow-y-hidden absolute left-0 top-0 w-full sm:w-[620px] md:w-[720px] p-6 pr-2 pb-0 pt-[98px] sm:p-14 sm:pr-8 sm:pb-0 sm:pt-[128px] md:pl-[140px] md:pt-14 z-50 bg-modal sm:rounded-tr-[20px] sm:rounded-br-[20px]"
           >
             <h2 className="pb-6 text-2xl font-semibold sm:pb-12 text-primary">
-              New Invoice
+              {isEditing
+                ? `Edit #${getShortId(invoiceToEdit.id)}`
+                : "New Invoice"}
             </h2>
             {/* Bill from */}
             <div className="flex flex-col gap-12 pr-4 overflow-y-auto sm:pr-6">
@@ -280,7 +300,7 @@ const InvoiceModal = () => {
               </div>
               <ItemList>
                 <div className="flex flex-col gap-4">
-                  {fields.map((item, index) => (
+                  {fields.map((_, index) => (
                     <ItemListItem
                       key={index}
                       id={`items[${index}]`}
@@ -288,9 +308,9 @@ const InvoiceModal = () => {
                       errors={errors}
                       required
                       watch={watch}
-                      remove={() => remove(index)}
-                      index={index}
+                      remove={remove}
                       setCustomValue={setCustomValue}
+                      index={index}
                     />
                   ))}
                   <Button
@@ -304,25 +324,35 @@ const InvoiceModal = () => {
                 </div>
               </ItemList>
             </div>
-            <div className="flex justify-between py-6 pl-0 pr-5">
+            {/* Form buttons */}
+            <div
+              className={`flex py-6 pl-0 pr-5 gap-2
+                        ${isEditing ? "justify-end" : "justify-between"}`}
+            >
               <Button
                 disabled={isLoading}
                 onClick={handleDiscard}
                 base
-                label="Discard"
+                label={isEditing ? "Cancel" : "Discard"}
               />
               <div className="flex gap-2">
-                <Button
-                  disabled={isLoading}
-                  darkGrey
-                  label="Save as Draft"
-                  onClick={handleSubmit(onDraftSubmit)}
-                />
+                {!isEditing && (
+                  <Button
+                    disabled={isLoading}
+                    darkGrey
+                    label="Save as Draft"
+                    onClick={handleSubmit(onDraftSubmit)}
+                  />
+                )}
                 <Button
                   disabled={isLoading}
                   purple
-                  label="Save & Send"
-                  onClick={handleSubmit(onSubmit)}
+                  label={isLoading ? "Save changes" : "Save & Send"}
+                  onClick={
+                    isLoading
+                      ? handleSubmit(onSubmit)
+                      : handleSubmit(onEditSubmit)
+                  }
                 />
               </div>
             </div>

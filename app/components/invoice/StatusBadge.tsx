@@ -1,4 +1,3 @@
-import { Status } from "@prisma/client";
 import React from "react";
 
 interface StatusBadgeProps {

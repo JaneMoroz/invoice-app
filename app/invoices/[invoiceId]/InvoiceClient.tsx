@@ -32,6 +32,7 @@ const InvoiceClient: React.FC<InvoiceClientProps> = ({ invoice }) => {
         <InvoiceActionButtons invoice={invoice} status={status} />
       </InvoiceHead>
       <InvoiceInfo invoice={invoice} />
+      {/* Buttons for mobiles */}
       <div className="flex justify-between flex-1 sm:hidden px-6 py-4 bg-[#FFFFFF] dark:bg-[#1E2139] items-center rounded-t-md">
         <InvoiceActionButtons invoice={invoice} status={status} />
       </div>

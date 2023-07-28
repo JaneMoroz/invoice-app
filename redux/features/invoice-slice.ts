@@ -42,6 +42,14 @@ export const updateStatus = createAsyncThunk(
   }
 );
 
+export const updateInvoice = createAsyncThunk(
+  "invoice/updateInvoice",
+  async (data: FieldValues & { invoiceId: string }) => {
+    const res = await axios.patch(`/api/invoices/${data.invoiceId}`, data);
+    return res.data;
+  }
+);
+
 const invoiceSlice = createSlice({
   name: "invoice",
   initialState,
@@ -55,6 +63,7 @@ const invoiceSlice = createSlice({
       state.invoiceToEdit = null;
     },
     onEdit: (state, action) => {
+      state.isOpen = true;
       state.isEditing = true;
       state.invoiceToEdit = action.payload;
     },
@@ -99,6 +108,21 @@ const invoiceSlice = createSlice({
     });
 
     builder.addCase(updateStatus.rejected, (state, action) => {
+      state.isLoading = false;
+      toast.error("Something went wrong");
+    });
+
+    builder.addCase(updateInvoice.pending, (state) => {
+      state.isLoading = true;
+    });
+
+    builder.addCase(updateInvoice.fulfilled, (state, action) => {
+      state.isLoading = false;
+      toast.success("Invoice is updated!");
+      state.isOpen = false;
+    });
+
+    builder.addCase(updateInvoice.rejected, (state, action) => {
       state.isLoading = false;
       toast.error("Something went wrong");
     });

@@ -6,7 +6,6 @@ import { useAppDispatch, useInvoice } from "@/redux/hooks";
 import {
   deleteInvoice,
   onEdit,
-  onOpen,
   updateStatus,
 } from "@/redux/features/invoice-slice";
 import { useRouter } from "next/navigation";
@@ -28,7 +27,6 @@ const InvoiceActionButtons: React.FC<InvoiceActionButtonsProps> = ({
 
   const handleEdit = () => {
     dispatch(onEdit(invoice));
-    dispatch(onOpen());
   };
 
   const handleDelete = () => {

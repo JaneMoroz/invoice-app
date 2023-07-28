@@ -1,7 +1,5 @@
 "use client";
 
-import { SafeInvoice } from "@/app/types";
-import InvoiceActionButtons from "./InvoiceActionButtons";
 import StatusBadge from "./StatusBadge";
 
 interface InvoiceHeadProps {

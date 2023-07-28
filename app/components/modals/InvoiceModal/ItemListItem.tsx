@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import {
   FieldErrors,
   FieldValues,
+  UseFieldArrayRemove,
   UseFormRegister,
   UseFormWatch,
 } from "react-hook-form";
@@ -19,7 +20,7 @@ interface ItemListItemProps {
   errors: FieldErrors;
   watch: UseFormWatch<FieldValues>;
   setCustomValue: (id: string, value: any) => void;
-  remove: () => void;
+  remove: UseFieldArrayRemove;
   index: number;
 }
 
@@ -86,7 +87,8 @@ const ItemListItem: React.FC<ItemListItemProps> = ({
       </div>
       <div>
         <button
-          onClick={remove}
+          type="button"
+          onClick={() => remove(index)}
           className="flex justify-center w-full pt-5 sm:pt-0"
         >
           <Delete />
