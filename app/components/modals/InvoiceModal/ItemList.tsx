@@ -13,7 +13,7 @@ const ItemList: React.FC<ItemListProps> = ({ children }) => {
         <div className="col-span-2">Quantity</div>
         <div className="col-span-2">Price</div>
         <div className="col-span-2">Total</div>
-        <div>Icon</div>
+        <div> </div>
       </div>
       {children}
     </div>

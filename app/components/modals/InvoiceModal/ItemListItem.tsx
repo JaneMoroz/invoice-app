@@ -79,7 +79,7 @@ const ItemListItem: React.FC<ItemListItemProps> = ({
           itemIndex={index}
         />
       </div>
-      <div className="flex flex-col h-full sm:justify-center col-span-3 sm:col-span-2 text-[12px] font-bold">
+      <div className="flex flex-col sm:justify-center col-span-3 sm:col-span-2 text-[12px] font-bold">
         <span className="block sm:hidden pb-5 text-xs font-medium leading-4 text-[#7E88C3] dark:text-[#DFE3FA]">
           Total
         </span>
