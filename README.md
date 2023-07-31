@@ -1,34 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">Invoice app</h1>
+<div align="center">
+  <h3>
+    <a href="https://invoice-app-fe-mentor.vercel.app/" color="white">
+      Live
+    </a>
+    <span> | </span>
+    <a href="https://github.com/JaneMoroz/invoice-app">
+      Solution
+    </a>
+   <span> | </span>
+    <a href="https://www.frontendmentor.io/challenges/invoice-app-i7KaLTQjl">
+      Challenge
+    </a>
+  </h3>
+</div>
+<div align="center">
+   Solution for a challenge from  <a href="https://www.frontendmentor.io/" target="_blank">frontendmentor.io</a>.
+</div>
+<br/>
+<br/>
 
-## Getting Started
+<div align="center"><img src="https://res.cloudinary.com/dz209s6jk/image/upload/v1614355720/Challenges/v760dr4mqyro0xey3dr3.jpg"></img></div>
+<br/>
+<br/>
 
-First, run the development server:
+## 🚀 Technologies used:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+<img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Nextjs icon" height="30" /><img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" alt="Typescript icon" height="30" /><img src="https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white" alt="Redux icon" height="30" /><img src="https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white" alt="React hook form icon" height="30" /><img src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white" alt="Mongo icon" height="30" /><img src="https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white" alt="Prisma icon" height="30" />
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [x] [next-auth](https://next-auth.js.org)
+- [x] [next-themes](https://github.com/pacocoursey/next-themes#readme)
+- [x] [query-string](https://github.com/sindresorhus/query-string)
+- [x] [react-datepicker](https://www.npmjs.com/package/react-datepicker)
+- [x] [react-hot-toast](https://react-hot-toast.com)
+- [x] [react-select](https://react-select.com/home)
+- [x] [react-spinners](https://www.davidhu.io/react-spinners/)
+- [x] [world-countries](https://www.npmjs.com/package/world-countries)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📄 About The Project
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+A fullstack invoice app built with Nextjs.
+<br/>
 
-## Learn More
+## 😀 User Can:
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [x] A full-stack application
+- [x] View the optimal layout for the app depending on their device's screen size
+- [x] See hover states for all interactive elements on the page
+- [x] Create, read, update, and delete invoices
+- [x] Receive form validations when trying to create/edit an invoice
+- [x] Save draft invoices, and mark pending invoices as paid
+- [x] Filter invoices by status (draft/pending/paid)
+- [x] Toggle light and dark mode
