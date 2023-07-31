@@ -22,8 +22,45 @@ const spartan = League_Spartan({
 });
 
 export const metadata = {
+  generator: "Next.js",
+  applicationName: "Invoice App",
   title: "Invoice App",
-  description: "Invoice App",
+  description: "Invoice App helps you to track your invoices.",
+  authors: [{ name: "Jane Moroz", url: "https://jane-moroz-dev.netlify.app" }],
+  keywords: ["nextjs", "frontend mentor", "invoice app"],
+  metadataBase: new URL("https://invoice-app-fe-mentor.vercel.app"),
+  openGraph: {
+    title: "Invoice App",
+    description: "Invoice App helps you to track your invoices.",
+    url: "https://invoice-app-fe-mentor.vercel.app",
+    type: "website",
+    locale: "en_US",
+    siteName: "Invoice app",
+    images:
+      "https://github.com/JaneMoroz/invoice-app/blob/main/images/home-dark.jpg?raw=true",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Invoice app",
+    description: "Invoice App helps you to track your invoices.",
+    images: [
+      "https://github.com/JaneMoroz/invoice-app/blob/main/images/home-dark.jpg?raw=true",
+    ],
+  },
+
+  robots: {
+    index: false,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: false,
+      noimageindex: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default async function RootLayout({
