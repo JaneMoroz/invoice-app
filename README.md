@@ -52,3 +52,26 @@ A fullstack invoice app built with Nextjs.
 - [x] Save draft invoices, and mark pending invoices as paid
 - [x] Filter invoices by status (draft/pending/paid)
 - [x] Toggle light and dark mode
+
+## 🧞 Instructions
+
+To run the client:
+```
+open new terminal
+npm install
+npm run dev
+```
+
+## 💻 Preview
+<p float="left">
+ <img src="https://github.com/JaneMoroz/invoice-app/blob/main/images/home-dark.jpg?raw=true" width="400">
+ <img src="https://github.com/JaneMoroz/invoice-app/blob/main/images/home-light.jpg?raw=true" width="400">
+</p>
+<p float="left">
+ <img src="https://github.com/JaneMoroz/invoice-app/blob/main/images/auth-dark.jpg?raw=true" width="400">
+ <img src="https://github.com/JaneMoroz/invoice-app/blob/main/images/new-dark.jpg?raw=true" width="400">
+</p>
+<p float="left">
+ <img src="https://github.com/JaneMoroz/invoice-app/blob/main/images/invoice-dark.jpg?raw=true" width="400">
+ <img src="https://github.com/JaneMoroz/invoice-app/blob/main/images/edit-dark.jpg?raw=true" width="400">
+</p>
