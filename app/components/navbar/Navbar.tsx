@@ -12,14 +12,14 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   return (
-    <div className="z-30 absolute top-0 left-0 w-full md:w-auto md:h-full bg-nav md:rounded-tr-[20px] md:rounded-br-[20px] flex md:flex-col justify-between">
+    <header className="z-30 absolute top-0 left-0 w-full md:w-auto md:h-full bg-nav md:rounded-tr-[20px] md:rounded-br-[20px] flex md:flex-col justify-between">
       <Logo />
-      <div className="flex items-center md:flex-col">
+      <nav className="flex items-center md:flex-col">
         <ThemeToggler />
         <div className="w-px md:w-full h-full md:h-px bg-[#494E6E]"></div>
         <UserMenu currentUser={currentUser} />
-      </div>
-    </div>
+      </nav>
+    </header>
   );
 };
 
