@@ -83,9 +83,9 @@ export default async function RootLayout({
               <DeleteModal />
               <Navbar currentUser={currentUser} />
               <Container>
-                <div className="flex flex-col w-full h-full gap-14">
+                <main className="flex flex-col w-full h-full gap-14">
                   {children}
-                </div>
+                </main>
               </Container>
             </ThemeProvider>
           </Providers>
