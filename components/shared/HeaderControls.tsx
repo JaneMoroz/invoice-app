@@ -1,14 +1,14 @@
 "use client";
 
 import { useCallback } from "react";
-import { Plus } from "@/app/assets/icons/icons";
+import { Plus } from "@/assets/icons";
 import Filter from "./Filter";
 
-import { SafeUser } from "@/app/types";
+import { SafeUser } from "@/types";
 
-import { useAppDispatch } from "@/redux/hooks";
-import { onOpen as onInvoiceOpen } from "@/redux/features/invoice-slice";
-import { onOpen as onLoginModalOpen } from "@/redux/features/modals/login-modal-slice";
+import { useAppDispatch } from "@/libs/redux/hooks";
+import { onOpen as onInvoiceOpen } from "@/libs/redux/features/invoice-slice";
+import { onOpen as onLoginModalOpen } from "@/libs/redux/features/modals/login-modal-slice";
 
 interface HeaderControlsProps {
   currentUser?: SafeUser | null;

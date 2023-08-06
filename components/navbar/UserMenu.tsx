@@ -1,6 +1,6 @@
 "use client";
 
-import { SafeUser } from "@/app/types";
+import { SafeUser } from "@/types";
 
 import { useCallback, useState } from "react";
 import { signOut } from "next-auth/react";
@@ -8,9 +8,9 @@ import { signOut } from "next-auth/react";
 import Avatar from "./Avatar";
 import MenuItem from "./MenuItem";
 
-import { useAppDispatch } from "@/redux/hooks";
-import { onOpen as onRegisterModalOpen } from "@/redux/features/modals/register-modal-slice";
-import { onOpen as onLoginModalOpen } from "@/redux/features/modals/login-modal-slice";
+import { useAppDispatch } from "@/libs/redux/hooks";
+import { onOpen as onRegisterModalOpen } from "@/libs/redux/features/modals/register-modal-slice";
+import { onOpen as onLoginModalOpen } from "@/libs/redux/features/modals/login-modal-slice";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;

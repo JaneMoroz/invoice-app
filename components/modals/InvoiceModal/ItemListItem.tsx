@@ -10,7 +10,7 @@ import {
   UseFormWatch,
 } from "react-hook-form";
 
-import { Delete } from "@/app/assets/icons/icons";
+import { Delete } from "@/assets/icons";
 import Input from "../../inputs/Input";
 
 interface ItemListItemProps {

@@ -1,6 +1,6 @@
 "use client";
 
-import { SafeUser } from "@/app/types";
+import { SafeUser } from "@/types";
 
 import Logo from "./Logo";
 import ThemeToggler from "./ThemeToggler";

@@ -1,6 +1,6 @@
 import getInvoiceById from "@/app/actions/getInvoiceById";
 
-import EmptyState from "@/app/components/shared/EmptyState";
+import EmptyState from "@/components/shared/EmptyState";
 import InvoiceClient from "./InvoiceClient";
 
 interface IParams {

@@ -3,7 +3,7 @@
 import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
 
-import { Moon, Sun } from "@/app/assets/icons/icons";
+import { Moon, Sun } from "@/assets/icons";
 
 const ThemeToggler = () => {
   const [mounted, setMounted] = useState(false);

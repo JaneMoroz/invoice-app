@@ -1,4 +1,4 @@
-import { SafeInvoice } from "@/app/types";
+import { SafeInvoice } from "@/types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { FieldValues } from "react-hook-form";

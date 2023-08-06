@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import image from "../../../public/images/illustration-empty.svg";
+import image from "../../public/images/illustration-empty.svg";
 import Button from "./Button";
 import { useRouter } from "next/navigation";
 

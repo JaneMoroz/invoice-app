@@ -2,11 +2,11 @@
 
 import { add, format } from "date-fns";
 
-import { SafeInvoice } from "@/app/types";
-import useCountries from "@/app/hooks/useCountries";
-import { TERMS } from "@/app/enums";
+import { SafeInvoice } from "@/types";
+import useCountries from "@/hooks/useCountries";
+import { TERMS } from "@/enums";
 import { Item } from "@prisma/client";
-import getShortId from "@/app/helpers/getShortId";
+import getShortId from "@/helpers/getShortId";
 
 import InvoiceInfoItemList from "./InvoiceInfoItemList";
 

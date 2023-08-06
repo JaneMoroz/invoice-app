@@ -10,12 +10,12 @@ import Modal from "./Modal";
 import Input from "../inputs/Input";
 import Button from "../shared/Button";
 
-import { useRegisterModal, useAppDispatch } from "@/redux/hooks";
+import { useRegisterModal, useAppDispatch } from "@/libs/redux/hooks";
 import {
   onClose as onRegisterModalClose,
   registerUser,
-} from "@/redux/features/modals/register-modal-slice";
-import { onOpen as onLoginModalOpen } from "@/redux/features/modals/login-modal-slice";
+} from "@/libs/redux/features/modals/register-modal-slice";
+import { onOpen as onLoginModalOpen } from "@/libs/redux/features/modals/login-modal-slice";
 
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";

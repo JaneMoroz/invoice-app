@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import logo from "../../../public/images/logo.svg";
+import logo from "../../public/images/logo.svg";
 import Link from "next/link";
 
 const Logo = () => {

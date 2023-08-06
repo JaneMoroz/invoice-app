@@ -3,9 +3,9 @@ export const dynamic = "force-dynamic";
 import getCurrentUser from "./actions/getCurrentUser";
 import getInvoices, { IInvoicesParams } from "./actions/getInvoices";
 
-import InvoiceCard from "./components/invoice/InvoiceCard";
-import EmptyState from "./components/shared/EmptyState";
-import HeaderControls from "./components/shared/HeaderControls";
+import InvoiceCard from "../components/invoice/InvoiceCard";
+import EmptyState from "../components/shared/EmptyState";
+import HeaderControls from "../components/shared/HeaderControls";
 
 interface HomeProps {
   searchParams: IInvoicesParams;

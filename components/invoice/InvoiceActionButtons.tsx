@@ -2,15 +2,15 @@
 
 import Button from "../shared/Button";
 
-import { useAppDispatch, useInvoice } from "@/redux/hooks";
-import { onEdit, updateStatus } from "@/redux/features/invoice-slice";
+import { useAppDispatch, useInvoice } from "@/libs/redux/hooks";
+import { onEdit, updateStatus } from "@/libs/redux/features/invoice-slice";
 import { useRouter } from "next/navigation";
 import { unwrapResult } from "@reduxjs/toolkit";
-import { SafeInvoice } from "@/app/types";
+import { SafeInvoice } from "@/types";
 import {
   onOpen,
   setInvoiceId,
-} from "@/redux/features/modals/delete-modal-slice";
+} from "@/libs/redux/features/modals/delete-modal-slice";
 import { useCallback } from "react";
 
 interface InvoiceActionButtonsProps {

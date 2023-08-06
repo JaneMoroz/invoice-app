@@ -1,20 +1,20 @@
-import { ThemeProvider } from "@/providers/theme-provider";
+import { ThemeProvider } from "@/libs/providers/ThemeProvider";
 
-import { Providers } from "@/redux/provider";
+import { Providers } from "@/libs/redux/provider";
 
-import Navbar from "./components/navbar/Navbar";
-import LoginModal from "./components/modals/LoginModal";
-import RegisterModal from "./components/modals/RegisterModal";
-import InvoiceModal from "./components/modals/InvoiceModal/InvoiceModal";
-import Container from "./components/shared/Container";
-import DeleteModal from "./components/modals/DeleteModal";
+import Navbar from "../components/navbar/Navbar";
+import LoginModal from "../components/modals/LoginModal";
+import RegisterModal from "../components/modals/RegisterModal";
+import InvoiceModal from "../components/modals/InvoiceModal/InvoiceModal";
+import Container from "../components/shared/Container";
+import DeleteModal from "../components/modals/DeleteModal";
 
 import getCurrentUser from "./actions/getCurrentUser";
 
 import "./globals.css";
 import { League_Spartan } from "next/font/google";
 
-import ToasterProvider from "./providers/ToasterProvider";
+import ToasterProvider from "../libs/providers/ToasterProvider";
 
 const spartan = League_Spartan({
   subsets: ["latin"],

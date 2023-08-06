@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { format, add } from "date-fns";
 
-import { SafeInvoice } from "@/app/types";
-import { TERMS } from "@/app/enums";
-import { ArrowRight } from "@/app/assets/icons/icons";
+import { SafeInvoice } from "@/types";
+import { TERMS } from "@/enums";
+import { ArrowRight } from "@/assets/icons";
 import StatusBadge from "./StatusBadge";
-import getShortId from "@/app/helpers/getShortId";
+import getShortId from "@/helpers/getShortId";
 
 interface InvoiceCardProps {
   invoice: SafeInvoice;

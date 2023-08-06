@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowDown } from "@/app/assets/icons/icons";
+import { ArrowDown } from "@/assets/icons";
 import Check from "../inputs/Check";
 import { useSearchParams } from "next/navigation";
 

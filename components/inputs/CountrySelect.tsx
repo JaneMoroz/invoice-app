@@ -3,7 +3,7 @@
 import React from "react";
 import Select from "react-select";
 
-import useCountries from "@/app/hooks/useCountries";
+import useCountries from "@/hooks/useCountries";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 
 export type CountrySelectValue = {

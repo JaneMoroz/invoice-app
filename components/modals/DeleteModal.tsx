@@ -7,10 +7,10 @@ import { unwrapResult } from "@reduxjs/toolkit";
 
 import Modal from "./Modal";
 
-import { useAppDispatch, useDeleteModal } from "@/redux/hooks";
-import { onClose } from "@/redux/features/modals/delete-modal-slice";
-import { deleteInvoice } from "@/redux/features/invoice-slice";
-import getShortId from "@/app/helpers/getShortId";
+import { useAppDispatch, useDeleteModal } from "@/libs/redux/hooks";
+import { onClose } from "@/libs/redux/features/modals/delete-modal-slice";
+import { deleteInvoice } from "@/libs/redux/features/invoice-slice";
+import getShortId from "@/helpers/getShortId";
 
 const DeleteModal = () => {
   const router = useRouter();
