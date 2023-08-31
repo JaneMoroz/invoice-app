@@ -21,7 +21,7 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({ status }) => {
                     ${status === "draft" && "bg-[#373B53] dark:bg-[#DFE3FA]"}
                     ${status === "paid" && "bg-[#33D69F]"}`}
       ></span>
-      {status}
+      <span className="pt-1">{status}</span>
     </div>
   );
 };
